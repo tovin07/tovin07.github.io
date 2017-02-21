@@ -1,0 +1,1613 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="https://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <style>
+        .trace {
+            min-width: 900px;
+            width: 100%;
+        }
+
+        .trace tr:hover {
+            background-color: #D9EDF7 !important;
+        }
+
+        .trace tr td {
+            width: 14%;
+            white-space: nowrap;
+            padding: 2px;
+            border-right: 1px solid #EEE;
+        }
+
+        .trace tr td.details {
+            width: 10%;
+            padding-right: 20px;
+        }
+
+        .trace.cursor_pointer_on_hover {
+            cursor: pointer;
+        }
+
+        .trace .level {
+            width: 10%;
+            font-weight: bold;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .duration {
+            width: 25px;
+            margin: 0px;
+            padding: 0px;
+            background-color: #C6EFF3;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .duration div {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        dl {
+            margin: 5px 0px;
+        }
+
+        .hljs {
+            white-space: pre;
+            word-wrap: normal;
+        }
+
+        .hljs.wrapped {
+            white-space: pre-wrap;
+        }
+
+        .toggle-button {
+            margin-top: -7px;
+        }
+
+    </style>
+    <script>
+        (function(angular) {
+            'use strict';
+
+            var OSProfilerData = {
+    "info": {
+        "started": 0, 
+        "last_trace_started": 516, 
+        "finished": 524, 
+        "name": "total"
+    }, 
+    "stats": {
+        "wsgi": {
+            "count": 6, 
+            "duration": 602
+        }, 
+        "db": {
+            "count": 21, 
+            "duration": 200
+        }
+    }, 
+    "children": [
+        {
+            "info": {
+                "exception": "None", 
+                "name": "wsgi", 
+                "service": "main", 
+                "started": 0, 
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "service": null
+                    }, 
+                    "name": "wsgi-stop", 
+                    "service": "main", 
+                    "timestamp": "2017-02-15T04:33:06.999157", 
+                    "trace_id": "94d5ee90-c746-42b0-a3c8-4a64da2310df", 
+                    "project": "keystone", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }, 
+                "finished": 12, 
+                "project": "keystone", 
+                "host": "vinhnt-LAB", 
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "request": {
+                            "path": "/v3", 
+                            "scheme": "http", 
+                            "method": "GET", 
+                            "query": ""
+                        }, 
+                        "service": null
+                    }, 
+                    "name": "wsgi-start", 
+                    "service": "main", 
+                    "timestamp": "2017-02-15T04:33:06.986621", 
+                    "trace_id": "94d5ee90-c746-42b0-a3c8-4a64da2310df", 
+                    "project": "keystone", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }
+            }, 
+            "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+            "trace_id": "94d5ee90-c746-42b0-a3c8-4a64da2310df", 
+            "children": []
+        }, 
+        {
+            "info": {
+                "exception": "None", 
+                "name": "wsgi", 
+                "service": "main", 
+                "started": 15, 
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "service": null
+                    }, 
+                    "name": "wsgi-stop", 
+                    "service": "main", 
+                    "timestamp": "2017-02-15T04:33:07.108607", 
+                    "trace_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "project": "keystone", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }, 
+                "finished": 121, 
+                "project": "keystone", 
+                "host": "vinhnt-LAB", 
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "request": {
+                            "path": "/identity/v3/auth/tokens", 
+                            "scheme": "http", 
+                            "method": "POST", 
+                            "query": ""
+                        }, 
+                        "service": null
+                    }, 
+                    "name": "wsgi-start", 
+                    "service": "main", 
+                    "timestamp": "2017-02-15T04:33:07.002216", 
+                    "trace_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "project": "keystone", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }
+            }, 
+            "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+            "trace_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+            "children": [
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {}, 
+                                    "statement": "SELECT 1"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.061553", 
+                            "trace_id": "3e8b9f3b-7fc8-40fa-a15c-f1cb4425eb21", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "main", 
+                        "started": 74, 
+                        "finished": 76, 
+                        "project": "keystone", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.062884", 
+                            "trace_id": "3e8b9f3b-7fc8-40fa-a15c-f1cb4425eb21", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "trace_id": "3e8b9f3b-7fc8-40fa-a15c-f1cb4425eb21", 
+                    "children": []
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {
+                                        "param_1": "b159edf0e6ea4a0fb50dff40ec1fef1a"
+                                    }, 
+                                    "statement": "SELECT user.enabled AS user_enabled, user.id AS user_id, user.domain_id AS user_domain_id, user.extra AS user_extra, user.default_project_id AS user_default_project_id, user.created_at AS user_created_at, user.last_active_at AS user_last_active_at \nFROM user \nWHERE user.id = %(param_1)s"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.064285", 
+                            "trace_id": "87425a11-256a-4ecc-9072-32a0577f48db", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "main", 
+                        "started": 77, 
+                        "finished": 78, 
+                        "project": "keystone", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.065591", 
+                            "trace_id": "87425a11-256a-4ecc-9072-32a0577f48db", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "trace_id": "87425a11-256a-4ecc-9072-32a0577f48db", 
+                    "children": []
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {
+                                        "param_1": "b159edf0e6ea4a0fb50dff40ec1fef1a"
+                                    }, 
+                                    "statement": "SELECT federated_user.id AS federated_user_id, federated_user.user_id AS federated_user_user_id, federated_user.idp_id AS federated_user_idp_id, federated_user.protocol_id AS federated_user_protocol_id, federated_user.unique_id AS federated_user_unique_id, federated_user.display_name AS federated_user_display_name, anon_1.user_id AS anon_1_user_id \nFROM (SELECT user.id AS user_id \nFROM user \nWHERE user.id = %(param_1)s) AS anon_1 INNER JOIN federated_user ON anon_1.user_id = federated_user.user_id ORDER BY anon_1.user_id"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.067770", 
+                            "trace_id": "e6e33e64-759c-487f-ab17-386f1439a059", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "main", 
+                        "started": 81, 
+                        "finished": 82, 
+                        "project": "keystone", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.069210", 
+                            "trace_id": "e6e33e64-759c-487f-ab17-386f1439a059", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "trace_id": "e6e33e64-759c-487f-ab17-386f1439a059", 
+                    "children": []
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {
+                                        "param_1": "b159edf0e6ea4a0fb50dff40ec1fef1a"
+                                    }, 
+                                    "statement": "SELECT nonlocal_user.domain_id AS nonlocal_user_domain_id, nonlocal_user.name AS nonlocal_user_name, nonlocal_user.user_id AS nonlocal_user_user_id, anon_1.user_domain_id AS anon_1_user_domain_id, anon_1.user_id AS anon_1_user_id \nFROM (SELECT user.domain_id AS user_domain_id, user.id AS user_id \nFROM user \nWHERE user.id = %(param_1)s) AS anon_1 INNER JOIN nonlocal_user ON anon_1.user_domain_id = nonlocal_user.domain_id AND anon_1.user_id = nonlocal_user.user_id ORDER BY anon_1.user_domain_id, anon_1.user_id"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.074892", 
+                            "trace_id": "e4b97bdc-226c-49a3-8ab9-112e036a6ab5", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "main", 
+                        "started": 88, 
+                        "finished": 89, 
+                        "project": "keystone", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.076563", 
+                            "trace_id": "e4b97bdc-226c-49a3-8ab9-112e036a6ab5", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "trace_id": "e4b97bdc-226c-49a3-8ab9-112e036a6ab5", 
+                    "children": []
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {
+                                        "param_1": "b159edf0e6ea4a0fb50dff40ec1fef1a"
+                                    }, 
+                                    "statement": "SELECT user_option.user_id AS user_option_user_id, user_option.option_id AS user_option_option_id, user_option.option_value AS user_option_option_value, anon_1.user_id AS anon_1_user_id \nFROM (SELECT user.id AS user_id \nFROM user \nWHERE user.id = %(param_1)s) AS anon_1 INNER JOIN user_option ON anon_1.user_id = user_option.user_id ORDER BY anon_1.user_id"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.078623", 
+                            "trace_id": "36ca5424-36e2-4244-9b5f-91d6fb693470", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "main", 
+                        "started": 92, 
+                        "finished": 93, 
+                        "project": "keystone", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.079906", 
+                            "trace_id": "36ca5424-36e2-4244-9b5f-91d6fb693470", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "trace_id": "36ca5424-36e2-4244-9b5f-91d6fb693470", 
+                    "children": []
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {
+                                        "param_1": "b159edf0e6ea4a0fb50dff40ec1fef1a"
+                                    }, 
+                                    "statement": "SELECT local_user.id AS local_user_id, local_user.user_id AS local_user_user_id, local_user.domain_id AS local_user_domain_id, local_user.name AS local_user_name, local_user.failed_auth_count AS local_user_failed_auth_count, local_user.failed_auth_at AS local_user_failed_auth_at, anon_1.user_id AS anon_1_user_id, anon_1.user_domain_id AS anon_1_user_domain_id \nFROM (SELECT user.id AS user_id, user.domain_id AS user_domain_id \nFROM user \nWHERE user.id = %(param_1)s) AS anon_1 INNER JOIN local_user ON anon_1.user_id = local_user.user_id AND anon_1.user_domain_id = local_user.domain_id ORDER BY anon_1.user_id, anon_1.user_domain_id"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.084959", 
+                            "trace_id": "868212f9-de04-4287-89b5-e7256f08ae62", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "main", 
+                        "started": 98, 
+                        "finished": 100, 
+                        "project": "keystone", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.086844", 
+                            "trace_id": "868212f9-de04-4287-89b5-e7256f08ae62", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "trace_id": "868212f9-de04-4287-89b5-e7256f08ae62", 
+                    "children": []
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {
+                                        "param_1": "b159edf0e6ea4a0fb50dff40ec1fef1a"
+                                    }, 
+                                    "statement": "SELECT password.id AS password_id, password.local_user_id AS password_local_user_id, password.password AS password_password, password.created_at AS password_created_at, password.expires_at AS password_expires_at, password.self_service AS password_self_service, local_user_1.id AS local_user_1_id \nFROM (SELECT user.id AS user_id, user.domain_id AS user_domain_id \nFROM user \nWHERE user.id = %(param_1)s) AS anon_1 INNER JOIN local_user AS local_user_1 ON anon_1.user_id = local_user_1.user_id AND anon_1.user_domain_id = local_user_1.domain_id INNER JOIN password ON local_user_1.id = password.local_user_id ORDER BY local_user_1.id, password.created_at"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.089369", 
+                            "trace_id": "09717d6e-2cad-470d-8af6-2d2ec2cfab86", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "main", 
+                        "started": 102, 
+                        "finished": 104, 
+                        "project": "keystone", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "main", 
+                            "timestamp": "2017-02-15T04:33:07.091109", 
+                            "trace_id": "09717d6e-2cad-470d-8af6-2d2ec2cfab86", 
+                            "project": "keystone", 
+                            "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "756b9106-5add-4f70-a998-75e20c8f8a0d", 
+                    "trace_id": "09717d6e-2cad-470d-8af6-2d2ec2cfab86", 
+                    "children": []
+                }
+            ]
+        }, 
+        {
+            "info": {
+                "exception": "None", 
+                "name": "wsgi", 
+                "service": "api", 
+                "started": 127, 
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "service": null
+                    }, 
+                    "name": "wsgi-stop", 
+                    "service": "api", 
+                    "timestamp": "2017-02-15T04:33:07.436096", 
+                    "trace_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                    "project": "glance", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }, 
+                "finished": 449, 
+                "project": "glance", 
+                "host": "vinhnt-LAB", 
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "request": {
+                            "path": "/v2/images", 
+                            "scheme": "http", 
+                            "method": "GET", 
+                            "query": "limit=20&sort_key=name&sort_dir=asc"
+                        }, 
+                        "service": null
+                    }, 
+                    "name": "wsgi-start", 
+                    "service": "api", 
+                    "timestamp": "2017-02-15T04:33:07.113962", 
+                    "trace_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                    "project": "glance", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }
+            }, 
+            "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+            "trace_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+            "children": [
+                {
+                    "info": {
+                        "exception": "None", 
+                        "name": "wsgi", 
+                        "service": "admin", 
+                        "started": 143, 
+                        "meta.raw_payload.wsgi-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "wsgi-stop", 
+                            "service": "admin", 
+                            "timestamp": "2017-02-15T04:33:07.174143", 
+                            "trace_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "project": "keystone", 
+                            "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "finished": 187, 
+                        "project": "keystone", 
+                        "host": "vinhnt-LAB", 
+                        "meta.raw_payload.wsgi-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "request": {
+                                    "path": "/identity_admin/v3/auth/tokens", 
+                                    "scheme": "http", 
+                                    "method": "GET", 
+                                    "query": ""
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "wsgi-start", 
+                            "service": "admin", 
+                            "timestamp": "2017-02-15T04:33:07.129807", 
+                            "trace_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "project": "keystone", 
+                            "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }
+                    }, 
+                    "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                    "trace_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                    "children": [
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {}, 
+                                            "statement": "SELECT 1"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.144683", 
+                                    "trace_id": "637f17e6-9d79-4c7e-81ea-5584906e315d", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 158, 
+                                "finished": 159, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.145866", 
+                                    "trace_id": "637f17e6-9d79-4c7e-81ea-5584906e315d", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "trace_id": "637f17e6-9d79-4c7e-81ea-5584906e315d", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {
+                                                "project_id_1": "ff04bc8d618443df85ecc0f711f93991", 
+                                                "user_id_1": "9710cdb92d7f4890a3b17872669a11da", 
+                                                "issued_before_1": "2017-02-15T04:33:06.000000", 
+                                                "audit_id_1": "ek9zpbyISRehxb1BH6ktEQ"
+                                            }, 
+                                            "statement": "SELECT revocation_event.id AS revocation_event_id, revocation_event.domain_id AS revocation_event_domain_id, revocation_event.project_id AS revocation_event_project_id, revocation_event.user_id AS revocation_event_user_id, revocation_event.role_id AS revocation_event_role_id, revocation_event.trust_id AS revocation_event_trust_id, revocation_event.consumer_id AS revocation_event_consumer_id, revocation_event.access_token_id AS revocation_event_access_token_id, revocation_event.issued_before AS revocation_event_issued_before, revocation_event.expires_at AS revocation_event_expires_at, revocation_event.revoked_at AS revocation_event_revoked_at, revocation_event.audit_id AS revocation_event_audit_id, revocation_event.audit_chain_id AS revocation_event_audit_chain_id \nFROM revocation_event \nWHERE revocation_event.issued_before >= %(issued_before_1)s AND (revocation_event.user_id IS NULL OR revocation_event.user_id = %(user_id_1)s) AND (revocation_event.project_id IS NULL OR revocation_event.project_id = %(project_id_1)s) AND (revocation_event.audit_id IS NULL OR revocation_event.audit_id = %(audit_id_1)s)"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.147295", 
+                                    "trace_id": "ff9c329c-bd3f-40b0-b7d8-0927ab83cc7d", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 160, 
+                                "finished": 162, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.149174", 
+                                    "trace_id": "ff9c329c-bd3f-40b0-b7d8-0927ab83cc7d", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "trace_id": "ff9c329c-bd3f-40b0-b7d8-0927ab83cc7d", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {}, 
+                                            "statement": "SELECT 1"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.156541", 
+                                    "trace_id": "0c71770c-5024-4d46-b085-672e0c4b84cd", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 169, 
+                                "finished": 171, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.158121", 
+                                    "trace_id": "0c71770c-5024-4d46-b085-672e0c4b84cd", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "trace_id": "0c71770c-5024-4d46-b085-672e0c4b84cd", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {
+                                                "project_id_1": "aeb1b50f197a432dad7ee0edd7bd774e", 
+                                                "user_id_1": "b159edf0e6ea4a0fb50dff40ec1fef1a", 
+                                                "issued_before_1": "2017-02-15T04:33:07.000000", 
+                                                "audit_id_1": "bDlcp8GaTpqpk8O4cmY3_A"
+                                            }, 
+                                            "statement": "SELECT revocation_event.id AS revocation_event_id, revocation_event.domain_id AS revocation_event_domain_id, revocation_event.project_id AS revocation_event_project_id, revocation_event.user_id AS revocation_event_user_id, revocation_event.role_id AS revocation_event_role_id, revocation_event.trust_id AS revocation_event_trust_id, revocation_event.consumer_id AS revocation_event_consumer_id, revocation_event.access_token_id AS revocation_event_access_token_id, revocation_event.issued_before AS revocation_event_issued_before, revocation_event.expires_at AS revocation_event_expires_at, revocation_event.revoked_at AS revocation_event_revoked_at, revocation_event.audit_id AS revocation_event_audit_id, revocation_event.audit_chain_id AS revocation_event_audit_chain_id \nFROM revocation_event \nWHERE revocation_event.issued_before >= %(issued_before_1)s AND (revocation_event.user_id IS NULL OR revocation_event.user_id = %(user_id_1)s) AND (revocation_event.project_id IS NULL OR revocation_event.project_id = %(project_id_1)s) AND (revocation_event.audit_id IS NULL OR revocation_event.audit_id = %(audit_id_1)s)"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.159953", 
+                                    "trace_id": "9ab92b81-59d5-442a-b7ec-28b0490b3d9b", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 173, 
+                                "finished": 174, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.161596", 
+                                    "trace_id": "9ab92b81-59d5-442a-b7ec-28b0490b3d9b", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "trace_id": "9ab92b81-59d5-442a-b7ec-28b0490b3d9b", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {}, 
+                                            "statement": "SELECT 1"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.166773", 
+                                    "trace_id": "3d4f0bfc-89b8-43b4-850a-330c3fe84176", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 180, 
+                                "finished": 181, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.168104", 
+                                    "trace_id": "3d4f0bfc-89b8-43b4-850a-330c3fe84176", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "trace_id": "3d4f0bfc-89b8-43b4-850a-330c3fe84176", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {
+                                                "project_id_1": "aeb1b50f197a432dad7ee0edd7bd774e", 
+                                                "user_id_1": "b159edf0e6ea4a0fb50dff40ec1fef1a", 
+                                                "issued_before_1": "2017-02-15T04:33:07.000000", 
+                                                "audit_id_1": "bDlcp8GaTpqpk8O4cmY3_A"
+                                            }, 
+                                            "statement": "SELECT revocation_event.id AS revocation_event_id, revocation_event.domain_id AS revocation_event_domain_id, revocation_event.project_id AS revocation_event_project_id, revocation_event.user_id AS revocation_event_user_id, revocation_event.role_id AS revocation_event_role_id, revocation_event.trust_id AS revocation_event_trust_id, revocation_event.consumer_id AS revocation_event_consumer_id, revocation_event.access_token_id AS revocation_event_access_token_id, revocation_event.issued_before AS revocation_event_issued_before, revocation_event.expires_at AS revocation_event_expires_at, revocation_event.revoked_at AS revocation_event_revoked_at, revocation_event.audit_id AS revocation_event_audit_id, revocation_event.audit_chain_id AS revocation_event_audit_chain_id \nFROM revocation_event \nWHERE revocation_event.issued_before >= %(issued_before_1)s AND (revocation_event.user_id IS NULL OR revocation_event.user_id = %(user_id_1)s) AND (revocation_event.project_id IS NULL OR revocation_event.project_id = %(project_id_1)s) AND (revocation_event.audit_id IS NULL OR revocation_event.audit_id = %(audit_id_1)s)"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.169933", 
+                                    "trace_id": "e2e06974-b8e9-4fbc-a460-a1faf0319591", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 183, 
+                                "finished": 185, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.172021", 
+                                    "trace_id": "e2e06974-b8e9-4fbc-a460-a1faf0319591", 
+                                    "project": "keystone", 
+                                    "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "2294f7eb-32d2-40b1-bf4e-d831e60f5089", 
+                            "trace_id": "e2e06974-b8e9-4fbc-a460-a1faf0319591", 
+                            "children": []
+                        }
+                    ]
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {}, 
+                                    "statement": "SELECT 1"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "api", 
+                            "timestamp": "2017-02-15T04:33:07.246172", 
+                            "trace_id": "e33732f3-3bc6-4ceb-b253-cdacd850f671", 
+                            "project": "glance", 
+                            "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "api", 
+                        "started": 259, 
+                        "finished": 260, 
+                        "project": "glance", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "api", 
+                            "timestamp": "2017-02-15T04:33:07.247442", 
+                            "trace_id": "e33732f3-3bc6-4ceb-b253-cdacd850f671", 
+                            "project": "glance", 
+                            "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                    "trace_id": "e33732f3-3bc6-4ceb-b253-cdacd850f671", 
+                    "children": []
+                }, 
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "db": {
+                                    "params": {
+                                        "visibility_1": "community", 
+                                        "param_1": 20, 
+                                        "owner_1": "aeb1b50f197a432dad7ee0edd7bd774e", 
+                                        "status_6": "deactivated", 
+                                        "status_5": "deleted", 
+                                        "status_4": "pending_delete", 
+                                        "status_3": "queued", 
+                                        "status_2": "saving", 
+                                        "status_1": "active"
+                                    }, 
+                                    "statement": "SELECT anon_1.images_created_at AS anon_1_images_created_at, anon_1.images_updated_at AS anon_1_images_updated_at, anon_1.images_deleted_at AS anon_1_images_deleted_at, anon_1.images_deleted AS anon_1_images_deleted, anon_1.images_id AS anon_1_images_id, anon_1.images_name AS anon_1_images_name, anon_1.images_disk_format AS anon_1_images_disk_format, anon_1.images_container_format AS anon_1_images_container_format, anon_1.images_size AS anon_1_images_size, anon_1.images_virtual_size AS anon_1_images_virtual_size, anon_1.images_status AS anon_1_images_status, anon_1.images_visibility AS anon_1_images_visibility, anon_1.images_checksum AS anon_1_images_checksum, anon_1.images_min_disk AS anon_1_images_min_disk, anon_1.images_min_ram AS anon_1_images_min_ram, anon_1.images_owner AS anon_1_images_owner, anon_1.images_protected AS anon_1_images_protected, image_properties_1.created_at AS image_properties_1_created_at, image_properties_1.updated_at AS image_properties_1_updated_at, image_properties_1.deleted_at AS image_properties_1_deleted_at, image_properties_1.deleted AS image_properties_1_deleted, image_properties_1.id AS image_properties_1_id, image_properties_1.image_id AS image_properties_1_image_id, image_properties_1.name AS image_properties_1_name, image_properties_1.value AS image_properties_1_value, image_locations_1.created_at AS image_locations_1_created_at, image_locations_1.updated_at AS image_locations_1_updated_at, image_locations_1.deleted_at AS image_locations_1_deleted_at, image_locations_1.deleted AS image_locations_1_deleted, image_locations_1.id AS image_locations_1_id, image_locations_1.image_id AS image_locations_1_image_id, image_locations_1.value AS image_locations_1_value, image_locations_1.meta_data AS image_locations_1_meta_data, image_locations_1.status AS image_locations_1_status, image_tags_1.created_at AS image_tags_1_created_at, image_tags_1.updated_at AS image_tags_1_updated_at, image_tags_1.deleted_at AS image_tags_1_deleted_at, image_tags_1.deleted AS image_tags_1_deleted, image_tags_1.id AS image_tags_1_id, image_tags_1.image_id AS image_tags_1_image_id, image_tags_1.value AS image_tags_1_value \nFROM (SELECT images.created_at AS images_created_at, images.updated_at AS images_updated_at, images.deleted_at AS images_deleted_at, images.deleted AS images_deleted, images.id AS images_id, images.name AS images_name, images.disk_format AS images_disk_format, images.container_format AS images_container_format, images.size AS images_size, images.virtual_size AS images_virtual_size, images.status AS images_status, images.visibility AS images_visibility, images.checksum AS images_checksum, images.min_disk AS images_min_disk, images.min_ram AS images_min_ram, images.owner AS images_owner, images.protected AS images_protected \nFROM images \nWHERE images.deleted = false AND images.status IN (%(status_1)s, %(status_2)s, %(status_3)s, %(status_4)s, %(status_5)s, %(status_6)s) AND (images.owner = %(owner_1)s OR images.visibility != %(visibility_1)s) ORDER BY images.name ASC, images.created_at ASC, images.id ASC \n LIMIT %(param_1)s) AS anon_1 LEFT OUTER JOIN image_properties AS image_properties_1 ON anon_1.images_id = image_properties_1.image_id LEFT OUTER JOIN image_locations AS image_locations_1 ON anon_1.images_id = image_locations_1.image_id LEFT OUTER JOIN image_tags AS image_tags_1 ON anon_1.images_id = image_tags_1.image_id ORDER BY anon_1.images_name ASC, anon_1.images_created_at ASC, anon_1.images_id ASC"
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "db-start", 
+                            "service": "api", 
+                            "timestamp": "2017-02-15T04:33:07.250952", 
+                            "trace_id": "c67c9898-2cd4-484e-8a2b-2f354236a573", 
+                            "project": "glance", 
+                            "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "name": "db", 
+                        "service": "api", 
+                        "started": 264, 
+                        "finished": 432, 
+                        "project": "glance", 
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "db-stop", 
+                            "service": "api", 
+                            "timestamp": "2017-02-15T04:33:07.418834", 
+                            "trace_id": "c67c9898-2cd4-484e-8a2b-2f354236a573", 
+                            "project": "glance", 
+                            "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "host": "vinhnt-LAB", 
+                        "exception": "None"
+                    }, 
+                    "parent_id": "4dcb94ce-ec5d-4e78-a8ec-c869464fb797", 
+                    "trace_id": "c67c9898-2cd4-484e-8a2b-2f354236a573", 
+                    "children": []
+                }
+            ]
+        }, 
+        {
+            "info": {
+                "exception": "None", 
+                "name": "wsgi", 
+                "service": "api", 
+                "started": 460, 
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "service": null
+                    }, 
+                    "name": "wsgi-stop", 
+                    "service": "api", 
+                    "timestamp": "2017-02-15T04:33:07.511365", 
+                    "trace_id": "7f176d48-7b5d-4516-b205-c86dbd91466b", 
+                    "project": "glance", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }, 
+                "finished": 524, 
+                "project": "glance", 
+                "host": "vinhnt-LAB", 
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null, 
+                        "host": "vinhnt-LAB", 
+                        "request": {
+                            "path": "/v2/schemas/image", 
+                            "scheme": "http", 
+                            "method": "GET", 
+                            "query": ""
+                        }, 
+                        "service": null
+                    }, 
+                    "name": "wsgi-start", 
+                    "service": "api", 
+                    "timestamp": "2017-02-15T04:33:07.447527", 
+                    "trace_id": "7f176d48-7b5d-4516-b205-c86dbd91466b", 
+                    "project": "glance", 
+                    "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                }
+            }, 
+            "parent_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c", 
+            "trace_id": "7f176d48-7b5d-4516-b205-c86dbd91466b", 
+            "children": [
+                {
+                    "info": {
+                        "exception": "None", 
+                        "name": "wsgi", 
+                        "service": "admin", 
+                        "started": 466, 
+                        "meta.raw_payload.wsgi-stop": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "service": null
+                            }, 
+                            "name": "wsgi-stop", 
+                            "service": "admin", 
+                            "timestamp": "2017-02-15T04:33:07.506846", 
+                            "trace_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "project": "keystone", 
+                            "parent_id": "7f176d48-7b5d-4516-b205-c86dbd91466b", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }, 
+                        "finished": 520, 
+                        "project": "keystone", 
+                        "host": "vinhnt-LAB", 
+                        "meta.raw_payload.wsgi-start": {
+                            "info": {
+                                "project": null, 
+                                "host": "vinhnt-LAB", 
+                                "request": {
+                                    "path": "/identity_admin/v3/auth/tokens", 
+                                    "scheme": "http", 
+                                    "method": "GET", 
+                                    "query": ""
+                                }, 
+                                "service": null
+                            }, 
+                            "name": "wsgi-start", 
+                            "service": "admin", 
+                            "timestamp": "2017-02-15T04:33:07.453092", 
+                            "trace_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "project": "keystone", 
+                            "parent_id": "7f176d48-7b5d-4516-b205-c86dbd91466b", 
+                            "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                        }
+                    }, 
+                    "parent_id": "7f176d48-7b5d-4516-b205-c86dbd91466b", 
+                    "trace_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                    "children": [
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {}, 
+                                            "statement": "SELECT 1"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.473329", 
+                                    "trace_id": "5e843040-fe58-4ea8-83dd-1d860944a268", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 486, 
+                                "finished": 488, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.474830", 
+                                    "trace_id": "5e843040-fe58-4ea8-83dd-1d860944a268", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "trace_id": "5e843040-fe58-4ea8-83dd-1d860944a268", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {
+                                                "project_id_1": "ff04bc8d618443df85ecc0f711f93991", 
+                                                "user_id_1": "9710cdb92d7f4890a3b17872669a11da", 
+                                                "issued_before_1": "2017-02-15T04:33:06.000000", 
+                                                "audit_id_1": "ek9zpbyISRehxb1BH6ktEQ"
+                                            }, 
+                                            "statement": "SELECT revocation_event.id AS revocation_event_id, revocation_event.domain_id AS revocation_event_domain_id, revocation_event.project_id AS revocation_event_project_id, revocation_event.user_id AS revocation_event_user_id, revocation_event.role_id AS revocation_event_role_id, revocation_event.trust_id AS revocation_event_trust_id, revocation_event.consumer_id AS revocation_event_consumer_id, revocation_event.access_token_id AS revocation_event_access_token_id, revocation_event.issued_before AS revocation_event_issued_before, revocation_event.expires_at AS revocation_event_expires_at, revocation_event.revoked_at AS revocation_event_revoked_at, revocation_event.audit_id AS revocation_event_audit_id, revocation_event.audit_chain_id AS revocation_event_audit_chain_id \nFROM revocation_event \nWHERE revocation_event.issued_before >= %(issued_before_1)s AND (revocation_event.user_id IS NULL OR revocation_event.user_id = %(user_id_1)s) AND (revocation_event.project_id IS NULL OR revocation_event.project_id = %(project_id_1)s) AND (revocation_event.audit_id IS NULL OR revocation_event.audit_id = %(audit_id_1)s)"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.476821", 
+                                    "trace_id": "30f81361-700e-4b61-ac0d-d4ed0a961f8e", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 490, 
+                                "finished": 492, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.479573", 
+                                    "trace_id": "30f81361-700e-4b61-ac0d-d4ed0a961f8e", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "trace_id": "30f81361-700e-4b61-ac0d-d4ed0a961f8e", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {}, 
+                                            "statement": "SELECT 1"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.486287", 
+                                    "trace_id": "886c31ae-c9ec-43bf-a0a5-089ef186e164", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 499, 
+                                "finished": 501, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.487924", 
+                                    "trace_id": "886c31ae-c9ec-43bf-a0a5-089ef186e164", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "trace_id": "886c31ae-c9ec-43bf-a0a5-089ef186e164", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {
+                                                "project_id_1": "aeb1b50f197a432dad7ee0edd7bd774e", 
+                                                "user_id_1": "b159edf0e6ea4a0fb50dff40ec1fef1a", 
+                                                "issued_before_1": "2017-02-15T04:33:07.000000", 
+                                                "audit_id_1": "bDlcp8GaTpqpk8O4cmY3_A"
+                                            }, 
+                                            "statement": "SELECT revocation_event.id AS revocation_event_id, revocation_event.domain_id AS revocation_event_domain_id, revocation_event.project_id AS revocation_event_project_id, revocation_event.user_id AS revocation_event_user_id, revocation_event.role_id AS revocation_event_role_id, revocation_event.trust_id AS revocation_event_trust_id, revocation_event.consumer_id AS revocation_event_consumer_id, revocation_event.access_token_id AS revocation_event_access_token_id, revocation_event.issued_before AS revocation_event_issued_before, revocation_event.expires_at AS revocation_event_expires_at, revocation_event.revoked_at AS revocation_event_revoked_at, revocation_event.audit_id AS revocation_event_audit_id, revocation_event.audit_chain_id AS revocation_event_audit_chain_id \nFROM revocation_event \nWHERE revocation_event.issued_before >= %(issued_before_1)s AND (revocation_event.user_id IS NULL OR revocation_event.user_id = %(user_id_1)s) AND (revocation_event.project_id IS NULL OR revocation_event.project_id = %(project_id_1)s) AND (revocation_event.audit_id IS NULL OR revocation_event.audit_id = %(audit_id_1)s)"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.490137", 
+                                    "trace_id": "c3689442-ced0-4c8b-8e26-727ab654826a", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 503, 
+                                "finished": 505, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.492312", 
+                                    "trace_id": "c3689442-ced0-4c8b-8e26-727ab654826a", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "trace_id": "c3689442-ced0-4c8b-8e26-727ab654826a", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {}, 
+                                            "statement": "SELECT 1"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.498610", 
+                                    "trace_id": "03658d61-4fed-4ab8-a7aa-21cad463928a", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 511, 
+                                "finished": 513, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.500222", 
+                                    "trace_id": "03658d61-4fed-4ab8-a7aa-21cad463928a", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "trace_id": "03658d61-4fed-4ab8-a7aa-21cad463928a", 
+                            "children": []
+                        }, 
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "db": {
+                                            "params": {
+                                                "project_id_1": "aeb1b50f197a432dad7ee0edd7bd774e", 
+                                                "user_id_1": "b159edf0e6ea4a0fb50dff40ec1fef1a", 
+                                                "issued_before_1": "2017-02-15T04:33:07.000000", 
+                                                "audit_id_1": "bDlcp8GaTpqpk8O4cmY3_A"
+                                            }, 
+                                            "statement": "SELECT revocation_event.id AS revocation_event_id, revocation_event.domain_id AS revocation_event_domain_id, revocation_event.project_id AS revocation_event_project_id, revocation_event.user_id AS revocation_event_user_id, revocation_event.role_id AS revocation_event_role_id, revocation_event.trust_id AS revocation_event_trust_id, revocation_event.consumer_id AS revocation_event_consumer_id, revocation_event.access_token_id AS revocation_event_access_token_id, revocation_event.issued_before AS revocation_event_issued_before, revocation_event.expires_at AS revocation_event_expires_at, revocation_event.revoked_at AS revocation_event_revoked_at, revocation_event.audit_id AS revocation_event_audit_id, revocation_event.audit_chain_id AS revocation_event_audit_chain_id \nFROM revocation_event \nWHERE revocation_event.issued_before >= %(issued_before_1)s AND (revocation_event.user_id IS NULL OR revocation_event.user_id = %(user_id_1)s) AND (revocation_event.project_id IS NULL OR revocation_event.project_id = %(project_id_1)s) AND (revocation_event.audit_id IS NULL OR revocation_event.audit_id = %(audit_id_1)s)"
+                                        }, 
+                                        "service": null
+                                    }, 
+                                    "name": "db-start", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.502684", 
+                                    "trace_id": "23d51f94-2ff4-4c18-aec2-806952d1c335", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "name": "db", 
+                                "service": "admin", 
+                                "started": 516, 
+                                "finished": 518, 
+                                "project": "keystone", 
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null, 
+                                        "host": "vinhnt-LAB", 
+                                        "service": null
+                                    }, 
+                                    "name": "db-stop", 
+                                    "service": "admin", 
+                                    "timestamp": "2017-02-15T04:33:07.504706", 
+                                    "trace_id": "23d51f94-2ff4-4c18-aec2-806952d1c335", 
+                                    "project": "keystone", 
+                                    "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                                    "base_id": "a6fd1853-bf76-4941-b232-b6fe1df65b9c"
+                                }, 
+                                "host": "vinhnt-LAB", 
+                                "exception": "None"
+                            }, 
+                            "parent_id": "0a9d47da-95f2-446c-a01c-61c1b364802d", 
+                            "trace_id": "23d51f94-2ff4-4c18-aec2-806952d1c335", 
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+
+            angular
+                .module('app', ['ui.bootstrap', 'hljs'])
+                .config(['$rootScopeProvider', function ($rootScopeProvider) {
+                    $rootScopeProvider.digestTtl(50);
+                }])
+                .config(['hljsServiceProvider', function (hljsServiceProvider) {
+                    hljsServiceProvider.setOptions({
+                        // replace tab with 4 spaces
+                        tabReplace: '    '
+                    });
+                }])
+                .controller('ProfilerController', ProfilerController)
+                .controller('ModalInstanceController', ModalInstanceController);
+
+            // Inject services
+            ProfilerController.$inject = ['$uibModal'];
+            ModalInstanceController.$inject = ['$uibModalInstance', 'info'];
+
+            function ProfilerController($uibModal) {
+                // NOTE(tovin07): Bind this to vm. This is controller as and vm syntax.
+                // This style is mainstream now. It replaces $scope style.
+                // Ref: https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/
+                var vm = this;
+
+                var converInput = function(input, level) {
+                    level = (level) ? level : 0;
+                    input.level = level;
+                    input.is_leaf = !input.children.length;
+
+                    for (var i = 0; i < input.children.length; i++) {
+                        converInput(input.children[i], level + 1);
+                    }
+                    return input;
+                };
+
+                vm.getWidth = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    var duration = (data.info.finished - data.info.started) * 100.0 / fullDuration;
+                    return (duration >= 0.5) ? duration : 0.5;
+                };
+
+                vm.getStarted = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    return data.info.started * 100.0 / fullDuration;
+                };
+
+                vm.isImportance = function(data) {
+                    return ['total', 'wsgi', 'rpc'].indexOf(data.info.name) != -1;
+                };
+
+                vm.display = function(data) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'modal_renderer.html',
+                        controller: 'ModalInstanceController',
+                        controllerAs: 'modal',
+                        size: 'lg',
+                        resolve: {
+                            info: function() {
+                                return angular.copy(data.info);
+                            }
+                        }
+                    });
+                };
+
+                vm.tree = [converInput(OSProfilerData)];
+            }
+
+            function ModalInstanceController($uibModalInstance, info){
+                var modal = this;
+                var metadata = {};
+                angular.forEach(info, function(value, key) {
+                    var parts = key.split('.');
+                    var metaText = 'meta';
+                    if (parts[0] == metaText) {
+                        if (parts.length == 2) {
+                            this[parts[1]] = value;
+                        } else {
+                            var groupName = parts[1];
+                            if (!(groupName in this)) {
+                                this[groupName] = {};
+                            }
+                            // Plus 2 for 2 dots such as: meta.raw_payload.heat.wsgi-start
+                            var index = metaText.length + parts[1].length + 2;
+                            this[groupName][key.slice(index)] = value;
+                        }
+                    };
+                }, metadata);
+
+                info.duration = info.finished - info.started;
+                // Escape single-quotes to prevent angular parse lexerr
+                info.metadata = JSON.stringify(metadata, null, 4).replace(/'/g, "\\'");
+
+                // Bind to view model
+                modal.info = info;
+
+                modal.columns = [
+                    ['name', 'project', 'service', 'host'],
+                    ['started', 'finished', 'duration', 'exception']
+                ];
+
+                modal.toggleWrap = function() {
+                    var element = angular.element(document.querySelector('code.hljs'));
+
+                    var wrappedClass = 'wrapped';
+                    var isWrapped = element.hasClass(wrappedClass);
+                    if (isWrapped) {
+                        element.removeClass(wrappedClass);
+                    } else {
+                        element.addClass(wrappedClass);
+                    }
+                };
+
+                modal.close = function() {
+                    $uibModalInstance.dismiss('close');
+                };
+            }
+        })(window.angular);
+    </script>
+</head>
+
+<body>
+    <!--Tree item template-->
+    <script type="text/ng-template" id="tree_item_renderer.html">
+        <div ng-init="hide_children=false">
+            <table class="trace cursor_pointer_on_hover">
+                <tr ng-class="{'bg-success': data.info.started == vm.tree[0].info.last_trace_started}">
+                    <td class="level" style="padding-left: {{data.level * 5}}px;">
+                        <button type="button" class="btn btn-default btn-xs" ng-disabled="data.is_leaf" ng-click="hide_children=!hide_children">
+                            <span class="glyphicon glyphicon-{{(data.is_leaf) ? 'cloud' : ((hide_children) ? 'plus': 'minus')}}"></span>
+                            {{data.level || 0}}
+                        </button>
+                    </td>
+                    <td ng-click="vm.display(data)" class="text-center">
+                        <div class="duration" style="width: {{vm.getWidth(data)}}%; margin-left: {{vm.getStarted(data)}}%;">
+                            <div>{{data.info.finished - data.info.started}} ms</div>
+                        </div>
+                    </td>
+                    <td ng-click="vm.display(data)" class="{{vm.isImportance(data) ? 'bold' : ''}} text-right">{{data.info.name}}</td>
+                    <td ng-click="vm.display(data)">{{data.info.project || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{data.info.service || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{data.info.host || "n/a"}}</td>
+                    <td class="details">
+                        <a href="#" ng-click="vm.display(data)">Details</a>
+                    </td>
+                </tr>
+            </table>
+            <div ng-hide="hide_children">
+                <div ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'"></div>
+            </div>
+        </div>
+    </script>
+    <!--Modal template-->
+    <script type="text/ng-template" id="modal_renderer.html">
+        <div class="modal-header">
+            <h3 class="text-center">
+                <strong>Trace Point Details</strong>
+                <span class="btn btn-default pull-right toggle-button" ng-click="modal.toggleWrap()">Toggle wrap-text</span>
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="cols in modal.columns">
+                    <dl class="dl-horizontal" ng-repeat="column in cols">
+                        <dt class="text-capitalize">{{column}}</dt>
+                        <dd>{{modal.info[column]}}</dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <!--For metadata only-->
+                    <dl class="dl-horizontal">
+                        <dt class="text-capitalize">metadata</dt>
+                        <dd hljs hljs-language="json" hljs-source="'{{modal.info.metadata}}'"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-default" ng-click="modal.close()">Close</span>
+        </div>
+    </script>
+    <!--Body-->
+    <div ng-controller="ProfilerController as vm">
+        <table class="trace">
+            <tr class="bold text-left" style="border-bottom: solid 1px gray;">
+                <td class="level">Levels</td>
+                <td>Duration</td>
+                <td class="text-right">Type</td>
+                <td>Project</td>
+                <td>Service</td>
+                <td>Host</td>
+                <td class="details">Details</td>
+            </tr>
+        </table>
+        <div ng-repeat="data in vm.tree" ng-include="'tree_item_renderer.html'"></div>
+    </div>
+</body>
+
+</html>
