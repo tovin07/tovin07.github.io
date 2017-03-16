@@ -1,0 +1,2316 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="https://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <style>
+        .trace {
+            min-width: 900px;
+            width: 100%;
+        }
+
+        .trace tr:hover {
+            background-color: #D9EDF7 !important;
+        }
+
+        .trace tr td {
+            width: 14%;
+            white-space: nowrap;
+            padding: 2px;
+            border-right: 1px solid #EEE;
+        }
+
+        .trace tr td.details {
+            width: 10%;
+            padding-right: 20px;
+        }
+
+        .trace.cursor_pointer_on_hover {
+            cursor: pointer;
+        }
+
+        .trace .level {
+            width: 10%;
+            font-weight: bold;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .duration {
+            width: 25px;
+            margin: 0px;
+            padding: 0px;
+            background-color: #C6EFF3;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .duration div {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        dl {
+            margin: 5px 0px;
+        }
+
+        .hljs {
+            white-space: pre;
+            word-wrap: normal;
+        }
+
+        .hljs.wrapped {
+            white-space: pre-wrap;
+        }
+
+        .toggle-button {
+            margin-top: -7px;
+        }
+
+    </style>
+    <script>
+        (function(angular) {
+            'use strict';
+
+            var OSProfilerData = {
+    "info": {
+        "started": 0,
+        "last_trace_started": 514,
+        "finished": 517,
+        "name": "total"
+    },
+    "stats": {
+        "wsgi": {
+            "count": 3,
+            "duration": 523
+        },
+        "api": {
+            "count": 4,
+            "duration": 497
+        },
+        "db": {
+            "count": 35,
+            "duration": 166
+        }
+    },
+    "children": [
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "murano-api",
+                "started": 0,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "murano-api",
+                    "timestamp": "2017-03-16T06:26:54.638898",
+                    "trace_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                    "project": "murano",
+                    "parent_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304",
+                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                },
+                "finished": 365,
+                "project": "murano",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/v1/environments/a7c5acb4bae74d1f87f673933071eb7d/sessions/5de92b47d3de4e31a2666d79814a4d19/deploy",
+                            "scheme": "http",
+                            "method": "POST",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "murano-api",
+                    "timestamp": "2017-03-16T06:26:54.272960",
+                    "trace_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                    "project": "murano",
+                    "parent_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304",
+                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                }
+            },
+            "parent_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304",
+            "trace_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+            "children": [
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "wsgi",
+                        "service": "admin",
+                        "started": 6,
+                        "meta.raw_payload.wsgi-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "wsgi-stop",
+                            "service": "admin",
+                            "timestamp": "2017-03-16T06:26:54.292490",
+                            "trace_id": "bff85961-6525-496f-9f91-53eba44c1939",
+                            "project": "keystone",
+                            "parent_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                            "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                        },
+                        "finished": 19,
+                        "project": "keystone",
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.wsgi-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "request": {
+                                    "path": "/v3/auth/tokens",
+                                    "scheme": "http",
+                                    "method": "GET",
+                                    "query": ""
+                                },
+                                "service": null
+                            },
+                            "name": "wsgi-start",
+                            "service": "admin",
+                            "timestamp": "2017-03-16T06:26:54.279728",
+                            "trace_id": "bff85961-6525-496f-9f91-53eba44c1939",
+                            "project": "keystone",
+                            "parent_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                            "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                        }
+                    },
+                    "parent_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                    "trace_id": "bff85961-6525-496f-9f91-53eba44c1939",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "api",
+                        "service": "murano-api",
+                        "started": 27,
+                        "finished": 364,
+                        "project": "murano",
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.api-start": {
+                            "info": {
+                                "function": {
+                                    "args": "(<murano.api.v1.sessions.Controller object at 0x7f93a789fd10>, <Request at 0x7f938cc06090 POST http://10.164.178.163:8082/v1/environments/a7c5acb4bae74d1f87f673933071eb7d/sessions/5de92b47d3de4e31a2666d79814a4d19/deploy>)",
+                                    "name": "murano.api.v1.sessions.Controller.wrap",
+                                    "kwargs": "{'environment_id': u'a7c5acb4bae74d1f87f673933071eb7d', 'session_id': u'5de92b47d3de4e31a2666d79814a4d19'}"
+                                },
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-start",
+                            "service": "murano-api",
+                            "timestamp": "2017-03-16T06:26:54.300281",
+                            "trace_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "project": "murano",
+                            "parent_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                            "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                        },
+                        "meta.raw_payload.api-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-stop",
+                            "service": "murano-api",
+                            "timestamp": "2017-03-16T06:26:54.637489",
+                            "trace_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "project": "murano",
+                            "parent_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                            "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                        }
+                    },
+                    "parent_id": "59e9ffac-26bb-4c08-bbba-fe6d69e7afcc",
+                    "trace_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                    "children": [
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.303703",
+                                    "trace_id": "680567c9-0fe3-43fb-abf4-56eccb8fd6c7",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 30,
+                                "finished": 32,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.305744",
+                                    "trace_id": "680567c9-0fe3-43fb-abf4-56eccb8fd6c7",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "680567c9-0fe3-43fb-abf4-56eccb8fd6c7",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "5de92b47d3de4e31a2666d79814a4d19"
+                                            },
+                                            "statement": "SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.308110",
+                                    "trace_id": "e490aae4-06f9-49fa-bae0-9e4340cb674c",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 35,
+                                "finished": 38,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.311454",
+                                    "trace_id": "e490aae4-06f9-49fa-bae0-9e4340cb674c",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "e490aae4-06f9-49fa-bae0-9e4340cb674c",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.315551",
+                                    "trace_id": "e5906c28-a646-41b1-97a0-aba734ee0a55",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 42,
+                                "finished": 44,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.317208",
+                                    "trace_id": "e5906c28-a646-41b1-97a0-aba734ee0a55",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "e5906c28-a646-41b1-97a0-aba734ee0a55",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT environment.created AS environment_created, environment.updated AS environment_updated, environment.id AS environment_id, environment.name AS environment_name, environment.tenant_id AS environment_tenant_id, environment.description_text AS environment_description_text, environment.version AS environment_version, environment.description AS environment_description \nFROM environment \nWHERE environment.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.319564",
+                                    "trace_id": "586f3f74-13ad-421d-a2eb-dac7ef5ccedf",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 46,
+                                "finished": 49,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.322794",
+                                    "trace_id": "586f3f74-13ad-421d-a2eb-dac7ef5ccedf",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "586f3f74-13ad-421d-a2eb-dac7ef5ccedf",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.326460",
+                                    "trace_id": "94551a42-2323-409e-a02d-7033a2876436",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 53,
+                                "finished": 55,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.328254",
+                                    "trace_id": "94551a42-2323-409e-a02d-7033a2876436",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "94551a42-2323-409e-a02d-7033a2876436",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT environment.created AS environment_created, environment.updated AS environment_updated, environment.id AS environment_id, environment.name AS environment_name, environment.tenant_id AS environment_tenant_id, environment.description_text AS environment_description_text, environment.version AS environment_version, environment.description AS environment_description \nFROM environment \nWHERE environment.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.330399",
+                                    "trace_id": "d35d05c6-8f54-4d03-8728-12fc393acdae",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 57,
+                                "finished": 60,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.333476",
+                                    "trace_id": "d35d05c6-8f54-4d03-8728-12fc393acdae",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "d35d05c6-8f54-4d03-8728-12fc393acdae",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.341888",
+                                    "trace_id": "74bfe2e4-6b5c-451e-a7c7-d5b9a6775197",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 68,
+                                "finished": 70,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.343609",
+                                    "trace_id": "74bfe2e4-6b5c-451e-a7c7-d5b9a6775197",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "74bfe2e4-6b5c-451e-a7c7-d5b9a6775197",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "state_1": "deploying",
+                                                "environment_id_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT count(*) AS count_1 \nFROM (SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.state = %(state_1)s AND session.environment_id = %(environment_id_1)s) AS anon_1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.345992",
+                                    "trace_id": "e4399ca9-241d-4caa-be9d-5d2c8c910343",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 73,
+                                "finished": 74,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.347739",
+                                    "trace_id": "e4399ca9-241d-4caa-be9d-5d2c8c910343",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "e4399ca9-241d-4caa-be9d-5d2c8c910343",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.350844",
+                                    "trace_id": "84cb53cc-d480-440f-80ae-cc839cabc3ba",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 77,
+                                "finished": 79,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.352504",
+                                    "trace_id": "84cb53cc-d480-440f-80ae-cc839cabc3ba",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "84cb53cc-d480-440f-80ae-cc839cabc3ba",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT environment.created AS environment_created, environment.updated AS environment_updated, environment.id AS environment_id, environment.name AS environment_name, environment.tenant_id AS environment_tenant_id, environment.description_text AS environment_description_text, environment.version AS environment_version, environment.description AS environment_description \nFROM environment \nWHERE environment.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.354743",
+                                    "trace_id": "2747fe03-f2b8-4c51-a1b4-8a42237ec959",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 81,
+                                "finished": 84,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.357732",
+                                    "trace_id": "2747fe03-f2b8-4c51-a1b4-8a42237ec959",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "2747fe03-f2b8-4c51-a1b4-8a42237ec959",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.361956",
+                                    "trace_id": "d90d3121-7150-4d62-bb11-00550d7979b8",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 88,
+                                "finished": 90,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.363945",
+                                    "trace_id": "d90d3121-7150-4d62-bb11-00550d7979b8",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "d90d3121-7150-4d62-bb11-00550d7979b8",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "updated": "2017-03-16T06:26:54.390000",
+                                                "state": "deploying",
+                                                "session_id": "5de92b47d3de4e31a2666d79814a4d19"
+                                            },
+                                            "statement": "UPDATE session SET updated=%(updated)s, state=%(state)s WHERE session.id = %(session_id)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.391068",
+                                    "trace_id": "a637154d-3407-4abe-8490-e01842cc554b",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 118,
+                                "finished": 120,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.393146",
+                                    "trace_id": "a637154d-3407-4abe-8490-e01842cc554b",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "a637154d-3407-4abe-8490-e01842cc554b",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.442581",
+                                    "trace_id": "205091b8-0b39-45b6-93eb-70d5c36e68ac",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 169,
+                                "finished": 174,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.447909",
+                                    "trace_id": "205091b8-0b39-45b6-93eb-70d5c36e68ac",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "205091b8-0b39-45b6-93eb-70d5c36e68ac",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "updated": "2017-03-16T06:26:54.452000",
+                                                "environment_id": "a7c5acb4bae74d1f87f673933071eb7d",
+                                                "description": "{\"defaultNetworks\": {\"environment\": {\"name\": \"test-network\", \"?\": {\"type\": \"io.murano.resources.NeutronNetwork\", \"id\": \"3c6e35777ded41eea7213dff4b765c69\"}}, \"flat\": null}, \"region\": null, \"name\": \"test\", \"?\": {\"updated\": \"2017-03-16 06:26:50.411003\", \"type\": \"io.murano.Environment\", \"id\": \"a7c5acb4bae74d1f87f673933071eb7d\", \"metadata\": {}}, \"applications\": [{\"instance\": {\"availabilityZone\": \"nova\", \"name\": \"xwvupifdxq27t1\", \"assignFloatingIp\": false, \"keyname\": \"\", \"flavor\": \"m1.small\", \"image\": \"fa578106-b3c1-4c42-8562-4e2e2d2a0a0c\", \"?\": {\"type\": \"io.murano.resources.LinuxMuranoInstance\", \"id\": \"f2194443cd9349d4ba3cc5774827ffff\"}}, \"name\": \"ApacheHttpServer\", \"enablePHP\": true, \"?\": {\"type\": \"com.example.apache.ApacheHttpServer\", \"id\": \"14b155bfb1154052969c50b8aa002e07\"}}]}",
+                                                "created": "2017-03-16T06:26:54.452000",
+                                                "started": "2017-03-16T06:26:54.453000",
+                                                "finished": null,
+                                                "result": "{}",
+                                                "action": "{\"args\": {}, \"method\": \"deploy\", \"object_id\": \"a7c5acb4bae74d1f87f673933071eb7d\"}",
+                                                "id": "483cd089d2394c67bb3e82956f0ecd85"
+                                            },
+                                            "statement": "INSERT INTO task (created, updated, id, started, finished, description, environment_id, action, result) VALUES (%(created)s, %(updated)s, %(id)s, %(started)s, %(finished)s, %(description)s, %(environment_id)s, %(action)s, %(result)s)"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.454107",
+                                    "trace_id": "9a6b585c-9ad6-4b9d-aba2-35026d352e80",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 181,
+                                "finished": 186,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.459383",
+                                    "trace_id": "9a6b585c-9ad6-4b9d-aba2-35026d352e80",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "9a6b585c-9ad6-4b9d-aba2-35026d352e80",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "entity_id": null,
+                                                "task_id": "483cd089d2394c67bb3e82956f0ecd85",
+                                                "level": "info",
+                                                "text": "Action deploy is scheduled",
+                                                "created": "2017-03-16T06:26:54.463000",
+                                                "updated": "2017-03-16T06:26:54.463000",
+                                                "entity": null,
+                                                "details": null,
+                                                "id": "5a0fb4d032c1427a824274aec3a1d20a"
+                                            },
+                                            "statement": "INSERT INTO status (created, updated, id, entity_id, entity, task_id, text, level, details) VALUES (%(created)s, %(updated)s, %(id)s, %(entity_id)s, %(entity)s, %(task_id)s, %(text)s, %(level)s, %(details)s)"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.463939",
+                                    "trace_id": "07dc6402-f19e-44b0-a479-7e079ebc4743",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 190,
+                                "finished": 269,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.542830",
+                                    "trace_id": "07dc6402-f19e-44b0-a479-7e079ebc4743",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "07dc6402-f19e-44b0-a479-7e079ebc4743",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "exception": "None",
+                                "name": "api",
+                                "service": "murano-api",
+                                "started": 341,
+                                "finished": 363,
+                                "project": "murano",
+                                "host": "vinhnt-LAB",
+                                "meta.raw_payload.api-start": {
+                                    "info": {
+                                        "function": {
+                                            "args": "(<murano.api.v1.request_statistics.RequestStatisticsCollection object at 0x7f93a8314750>, u'7171234090f8492f8b8e057bc3d6d1c0', 0.3117799758911133)",
+                                            "name": "murano.api.v1.request_statistics.RequestStatisticsCollection.add_api_request",
+                                            "kwargs": "{}"
+                                        },
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "api-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.614435",
+                                    "trace_id": "01ad4214-1408-4dd1-930d-8800f80b6c95",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "meta.raw_payload.api-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "api-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.636414",
+                                    "trace_id": "01ad4214-1408-4dd1-930d-8800f80b6c95",
+                                    "project": "murano",
+                                    "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                }
+                            },
+                            "parent_id": "94e9ac30-4c8f-4d5e-bca2-a62b933cf274",
+                            "trace_id": "01ad4214-1408-4dd1-930d-8800f80b6c95",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "murano-api",
+                "started": 372,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "murano-api",
+                    "timestamp": "2017-03-16T06:26:54.790485",
+                    "trace_id": "bf388630-3f9f-4d52-9f44-d0e0068f5061",
+                    "project": "murano",
+                    "parent_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304",
+                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                },
+                "finished": 517,
+                "project": "murano",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/v1/environments/a7c5acb4bae74d1f87f673933071eb7d",
+                            "scheme": "http",
+                            "method": "GET",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "murano-api",
+                    "timestamp": "2017-03-16T06:26:54.645903",
+                    "trace_id": "bf388630-3f9f-4d52-9f44-d0e0068f5061",
+                    "project": "murano",
+                    "parent_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304",
+                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                }
+            },
+            "parent_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304",
+            "trace_id": "bf388630-3f9f-4d52-9f44-d0e0068f5061",
+            "children": [
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "api",
+                        "service": "murano-api",
+                        "started": 379,
+                        "finished": 516,
+                        "project": "murano",
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.api-start": {
+                            "info": {
+                                "function": {
+                                    "args": "(<murano.api.v1.environments.Controller object at 0x7f93a7886810>, <Request at 0x7f938cc06750 GET http://10.164.178.163:8082/v1/environments/a7c5acb4bae74d1f87f673933071eb7d>)",
+                                    "name": "murano.api.v1.environments.Controller.wrap",
+                                    "kwargs": "{'environment_id': u'a7c5acb4bae74d1f87f673933071eb7d'}"
+                                },
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-start",
+                            "service": "murano-api",
+                            "timestamp": "2017-03-16T06:26:54.651972",
+                            "trace_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "project": "murano",
+                            "parent_id": "bf388630-3f9f-4d52-9f44-d0e0068f5061",
+                            "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                        },
+                        "meta.raw_payload.api-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-stop",
+                            "service": "murano-api",
+                            "timestamp": "2017-03-16T06:26:54.788979",
+                            "trace_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "project": "murano",
+                            "parent_id": "bf388630-3f9f-4d52-9f44-d0e0068f5061",
+                            "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                        }
+                    },
+                    "parent_id": "bf388630-3f9f-4d52-9f44-d0e0068f5061",
+                    "trace_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                    "children": [
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.654713",
+                                    "trace_id": "5f7b9244-09b8-42eb-8d90-3334a43d5585",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 381,
+                                "finished": 383,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.656948",
+                                    "trace_id": "5f7b9244-09b8-42eb-8d90-3334a43d5585",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "5f7b9244-09b8-42eb-8d90-3334a43d5585",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT environment.created AS environment_created, environment.updated AS environment_updated, environment.id AS environment_id, environment.name AS environment_name, environment.tenant_id AS environment_tenant_id, environment.description_text AS environment_description_text, environment.version AS environment_version, environment.description AS environment_description \nFROM environment \nWHERE environment.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.659422",
+                                    "trace_id": "a9a87826-fb6d-4449-bb0f-950d8fb27d07",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 386,
+                                "finished": 389,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.662222",
+                                    "trace_id": "a9a87826-fb6d-4449-bb0f-950d8fb27d07",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "a9a87826-fb6d-4449-bb0f-950d8fb27d07",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.667939",
+                                    "trace_id": "be472724-9100-4a3a-b1ad-7a147887c7f8",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 394,
+                                "finished": 396,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.669796",
+                                    "trace_id": "be472724-9100-4a3a-b1ad-7a147887c7f8",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "be472724-9100-4a3a-b1ad-7a147887c7f8",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT environment.created AS environment_created, environment.updated AS environment_updated, environment.id AS environment_id, environment.name AS environment_name, environment.tenant_id AS environment_tenant_id, environment.description_text AS environment_description_text, environment.version AS environment_version, environment.description AS environment_description \nFROM environment \nWHERE environment.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.671788",
+                                    "trace_id": "2c149c92-2d58-4d6c-aa89-d571557cf644",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 398,
+                                "finished": 402,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.674969",
+                                    "trace_id": "2c149c92-2d58-4d6c-aa89-d571557cf644",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "2c149c92-2d58-4d6c-aa89-d571557cf644",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.678963",
+                                    "trace_id": "f2f6bb20-fe1f-4b21-a3da-c2f0808cd25d",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 406,
+                                "finished": 407,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.680622",
+                                    "trace_id": "f2f6bb20-fe1f-4b21-a3da-c2f0808cd25d",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "f2f6bb20-fe1f-4b21-a3da-c2f0808cd25d",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "environment_id_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.environment_id = %(environment_id_1)s ORDER BY session.version DESC, session.updated DESC"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.682763",
+                                    "trace_id": "0e70645a-0927-4cfc-8f83-e2b686f77ff6",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 409,
+                                "finished": 412,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.685567",
+                                    "trace_id": "0e70645a-0927-4cfc-8f83-e2b686f77ff6",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "0e70645a-0927-4cfc-8f83-e2b686f77ff6",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.689608",
+                                    "trace_id": "12a8518d-7b08-41da-b9f3-920ccaad7577",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 416,
+                                "finished": 418,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.691265",
+                                    "trace_id": "12a8518d-7b08-41da-b9f3-920ccaad7577",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "12a8518d-7b08-41da-b9f3-920ccaad7577",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "state_1": "deploying",
+                                                "environment_id_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.environment_id = %(environment_id_1)s AND session.state = %(state_1)s ORDER BY session.version DESC, session.updated DESC"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.693544",
+                                    "trace_id": "f789399f-a2a3-42b3-b67d-d2de01cac03f",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 420,
+                                "finished": 423,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.696816",
+                                    "trace_id": "f789399f-a2a3-42b3-b67d-d2de01cac03f",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "f789399f-a2a3-42b3-b67d-d2de01cac03f",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.700624",
+                                    "trace_id": "0f2d538b-3eb2-4cfa-af23-2dca4ec9cd34",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 427,
+                                "finished": 429,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.702281",
+                                    "trace_id": "0f2d538b-3eb2-4cfa-af23-2dca4ec9cd34",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "0f2d538b-3eb2-4cfa-af23-2dca4ec9cd34",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "5de92b47d3de4e31a2666d79814a4d19"
+                                            },
+                                            "statement": "SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.704562",
+                                    "trace_id": "39c2504b-af39-4cff-8a17-f48635c12a73",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 431,
+                                "finished": 434,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.707561",
+                                    "trace_id": "39c2504b-af39-4cff-8a17-f48635c12a73",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "39c2504b-af39-4cff-8a17-f48635c12a73",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.711230",
+                                    "trace_id": "238ddbe2-f844-4807-865c-757095367427",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 438,
+                                "finished": 439,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.712885",
+                                    "trace_id": "238ddbe2-f844-4807-865c-757095367427",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "238ddbe2-f844-4807-865c-757095367427",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT environment.created AS environment_created, environment.updated AS environment_updated, environment.id AS environment_id, environment.name AS environment_name, environment.tenant_id AS environment_tenant_id, environment.description_text AS environment_description_text, environment.version AS environment_version, environment.description AS environment_description \nFROM environment \nWHERE environment.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.714917",
+                                    "trace_id": "ae874f7b-a0e9-47a1-ad5e-63ff97d33b3d",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 441,
+                                "finished": 445,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.718115",
+                                    "trace_id": "ae874f7b-a0e9-47a1-ad5e-63ff97d33b3d",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "ae874f7b-a0e9-47a1-ad5e-63ff97d33b3d",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.721482",
+                                    "trace_id": "507f4b8d-768b-46fb-8fa6-a2b870316b0f",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 448,
+                                "finished": 450,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.723194",
+                                    "trace_id": "507f4b8d-768b-46fb-8fa6-a2b870316b0f",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "507f4b8d-768b-46fb-8fa6-a2b870316b0f",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "5de92b47d3de4e31a2666d79814a4d19"
+                                            },
+                                            "statement": "SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.725391",
+                                    "trace_id": "414dbcef-a14c-4cca-869d-7841a5c96ba3",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 452,
+                                "finished": 455,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.728398",
+                                    "trace_id": "414dbcef-a14c-4cca-869d-7841a5c96ba3",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "414dbcef-a14c-4cca-869d-7841a5c96ba3",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.732046",
+                                    "trace_id": "72e964e7-7d37-4525-a880-311389474493",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 459,
+                                "finished": 461,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.733987",
+                                    "trace_id": "72e964e7-7d37-4525-a880-311389474493",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "72e964e7-7d37-4525-a880-311389474493",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "param_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT environment.created AS environment_created, environment.updated AS environment_updated, environment.id AS environment_id, environment.name AS environment_name, environment.tenant_id AS environment_tenant_id, environment.description_text AS environment_description_text, environment.version AS environment_version, environment.description AS environment_description \nFROM environment \nWHERE environment.id = %(param_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.736226",
+                                    "trace_id": "6efe996e-2fd7-4e18-92ab-b97785ff7686",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 463,
+                                "finished": 466,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.739415",
+                                    "trace_id": "6efe996e-2fd7-4e18-92ab-b97785ff7686",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "6efe996e-2fd7-4e18-92ab-b97785ff7686",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.765246",
+                                    "trace_id": "70b96125-cac5-4f83-a223-e1e31a07bdd1",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 492,
+                                "finished": 494,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.767291",
+                                    "trace_id": "70b96125-cac5-4f83-a223-e1e31a07bdd1",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "70b96125-cac5-4f83-a223-e1e31a07bdd1",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "state_1": "deploying",
+                                                "environment_id_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT count(*) AS count_1 \nFROM (SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.state = %(state_1)s AND session.environment_id = %(environment_id_1)s) AS anon_1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.769972",
+                                    "trace_id": "7be6cfa0-3e73-488f-a582-fe3c63611cf3",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 497,
+                                "finished": 499,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.772396",
+                                    "trace_id": "7be6cfa0-3e73-488f-a582-fe3c63611cf3",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "7be6cfa0-3e73-488f-a582-fe3c63611cf3",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.776599",
+                                    "trace_id": "73e78a4a-12c8-4781-a6e4-ee74945e7f89",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 503,
+                                "finished": 505,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.778490",
+                                    "trace_id": "73e78a4a-12c8-4781-a6e4-ee74945e7f89",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "73e78a4a-12c8-4781-a6e4-ee74945e7f89",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "environment_id_1": "a7c5acb4bae74d1f87f673933071eb7d"
+                                            },
+                                            "statement": "SELECT session.created AS session_created, session.updated AS session_updated, session.id AS session_id, session.environment_id AS session_environment_id, session.user_id AS session_user_id, session.state AS session_state, session.description AS session_description, session.version AS session_version \nFROM session \nWHERE session.environment_id = %(environment_id_1)s ORDER BY session.version DESC, session.updated DESC"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.780909",
+                                    "trace_id": "b6a8f14e-58af-4c28-8f31-8e9b761c8199",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "name": "db",
+                                "service": "murano-api",
+                                "started": 507,
+                                "finished": 511,
+                                "project": "murano",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.784074",
+                                    "trace_id": "b6a8f14e-58af-4c28-8f31-8e9b761c8199",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "b6a8f14e-58af-4c28-8f31-8e9b761c8199",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "exception": "None",
+                                "name": "api",
+                                "service": "murano-api",
+                                "started": 514,
+                                "finished": 515,
+                                "project": "murano",
+                                "host": "vinhnt-LAB",
+                                "meta.raw_payload.api-start": {
+                                    "info": {
+                                        "function": {
+                                            "args": "(<murano.api.v1.request_statistics.RequestStatisticsCollection object at 0x7f93a8314750>, u'7171234090f8492f8b8e057bc3d6d1c0', 0.13308286666870117)",
+                                            "name": "murano.api.v1.request_statistics.RequestStatisticsCollection.add_api_request",
+                                            "kwargs": "{}"
+                                        },
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "api-start",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.786996",
+                                    "trace_id": "c1fe7549-5785-43f3-97e9-59fbf394bfce",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                },
+                                "meta.raw_payload.api-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "api-stop",
+                                    "service": "murano-api",
+                                    "timestamp": "2017-03-16T06:26:54.787984",
+                                    "trace_id": "c1fe7549-5785-43f3-97e9-59fbf394bfce",
+                                    "project": "murano",
+                                    "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                                    "base_id": "bc0224e7-77d8-4ba5-86f7-ca6faa138304"
+                                }
+                            },
+                            "parent_id": "f7059a42-22d9-43e5-8419-35666efd7258",
+                            "trace_id": "c1fe7549-5785-43f3-97e9-59fbf394bfce",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+
+            angular
+                .module('app', ['ui.bootstrap', 'hljs'])
+                .config(['$rootScopeProvider', function ($rootScopeProvider) {
+                    $rootScopeProvider.digestTtl(50);
+                }])
+                .config(['hljsServiceProvider', function (hljsServiceProvider) {
+                    hljsServiceProvider.setOptions({
+                        // replace tab with 4 spaces
+                        tabReplace: '    '
+                    });
+                }])
+                .controller('ProfilerController', ProfilerController)
+                .controller('ModalInstanceController', ModalInstanceController);
+
+            // Inject services
+            ProfilerController.$inject = ['$uibModal'];
+            ModalInstanceController.$inject = ['$uibModalInstance', 'info'];
+
+            function ProfilerController($uibModal) {
+                // NOTE(tovin07): Bind this to vm. This is controller as and vm syntax.
+                // This style is mainstream now. It replaces $scope style.
+                // Ref: https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/
+                var vm = this;
+
+                var converInput = function(input, level) {
+                    level = (level) ? level : 0;
+                    input.level = level;
+                    input.is_leaf = !input.children.length;
+
+                    for (var i = 0; i < input.children.length; i++) {
+                        converInput(input.children[i], level + 1);
+                    }
+                    return input;
+                };
+
+                vm.isLastTrace = function(started) {
+                    if (started >=0 && started == vm.tree[0].info.last_trace_started) {
+                        return true;
+                    }
+                    return false;
+                };
+
+                vm.getWidth = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    var duration = (data.info.finished - data.info.started) * 100.0 / fullDuration;
+                    return (duration >= 0.5) ? duration : 0.5;
+                };
+
+                vm.getStarted = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    return data.info.started * 100.0 / fullDuration;
+                };
+
+                vm.isImportance = function(data) {
+                    return ['total', 'wsgi', 'rpc'].indexOf(data.info.name) != -1;
+                };
+
+                vm.display = function(data) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'modal_renderer.html',
+                        controller: 'ModalInstanceController',
+                        controllerAs: 'modal',
+                        size: 'lg',
+                        resolve: {
+                            info: function() {
+                                return angular.copy(data.info);
+                            }
+                        }
+                    });
+                };
+
+                vm.tree = [converInput(OSProfilerData)];
+            }
+
+            function ModalInstanceController($uibModalInstance, info){
+                var modal = this;
+                var metadata = {};
+                angular.forEach(info, function(value, key) {
+                    var parts = key.split('.');
+                    var metaText = 'meta';
+                    if (parts[0] == metaText) {
+                        if (parts.length == 2) {
+                            this[parts[1]] = value;
+                        } else {
+                            var groupName = parts[1];
+                            if (!(groupName in this)) {
+                                this[groupName] = {};
+                            }
+                            // Plus 2 for 2 dots such as: meta.raw_payload.heat.wsgi-start
+                            var index = metaText.length + parts[1].length + 2;
+                            this[groupName][key.slice(index)] = value;
+                        }
+                    };
+                }, metadata);
+
+                info.duration = info.finished - info.started;
+                // Escape single-quotes to prevent angular parse lexerr
+                info.metadata = JSON.stringify(metadata, null, 4).replace(/'/g, "\\'");
+
+                // Bind to view model
+                modal.info = info;
+
+                modal.columns = [
+                    ['name', 'project', 'service', 'host'],
+                    ['started', 'finished', 'duration', 'exception']
+                ];
+
+                modal.toggleWrap = function() {
+                    var element = angular.element(document.querySelector('code.hljs'));
+
+                    var wrappedClass = 'wrapped';
+                    var isWrapped = element.hasClass(wrappedClass);
+                    if (isWrapped) {
+                        element.removeClass(wrappedClass);
+                    } else {
+                        element.addClass(wrappedClass);
+                    }
+                };
+
+                modal.close = function() {
+                    $uibModalInstance.dismiss('close');
+                };
+            }
+        })(window.angular);
+    </script>
+</head>
+
+<body>
+    <!--Tree item template-->
+    <script type="text/ng-template" id="tree_item_renderer.html">
+        <div ng-init="hide_children=false">
+            <table class="trace cursor_pointer_on_hover">
+                <tr ng-class="{'bg-success': vm.isLastTrace(data.info.started)}">
+                    <td class="level" style="padding-left: {{::data.level * 5}}px;">
+                        <button type="button" class="btn btn-default btn-xs" ng-disabled="data.is_leaf" ng-click="hide_children=!hide_children">
+                            <span class="glyphicon glyphicon-{{(data.is_leaf) ? 'cloud' : ((hide_children) ? 'plus': 'minus')}}"></span>
+                            {{::data.level || 0}}
+                        </button>
+                    </td>
+                    <td ng-click="vm.display(data)" class="text-center">
+                        <div class="duration" style="width: {{vm.getWidth(data)}}%; margin-left: {{vm.getStarted(data)}}%;">
+                            <div>{{data.info.finished - data.info.started}} ms</div>
+                        </div>
+                    </td>
+                    <td ng-click="vm.display(data)" class="{{vm.isImportance(data) ? 'bold' : ''}} text-right">{{::data.info.name}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.project || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.service || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.host || "n/a"}}</td>
+                    <td class="details">
+                        <a href="#" ng-click="vm.display(data)">Details</a>
+                    </td>
+                </tr>
+            </table>
+            <div ng-hide="hide_children">
+                <div ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'"></div>
+            </div>
+        </div>
+    </script>
+    <!--Modal template-->
+    <script type="text/ng-template" id="modal_renderer.html">
+        <div class="modal-header">
+            <h3 class="text-center">
+                <strong>Trace Point Details</strong>
+                <span class="btn btn-default pull-right toggle-button" ng-click="modal.toggleWrap()">Toggle wrap-text</span>
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="cols in modal.columns">
+                    <dl class="dl-horizontal" ng-repeat="column in cols">
+                        <dt class="text-capitalize">{{::column}}</dt>
+                        <dd>{{::modal.info[column]}}</dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <!--For metadata only-->
+                    <dl class="dl-horizontal">
+                        <dt class="text-capitalize">metadata</dt>
+                        <dd hljs hljs-language="json" hljs-source="'{{::modal.info.metadata}}'"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-default" ng-click="modal.close()">Close</span>
+        </div>
+    </script>
+    <!--Body-->
+    <div ng-controller="ProfilerController as vm">
+        <table class="trace">
+            <tr class="bold text-left" style="border-bottom: solid 1px gray;">
+                <td class="level">Levels</td>
+                <td>Duration</td>
+                <td class="text-right">Type</td>
+                <td>Project</td>
+                <td>Service</td>
+                <td>Host</td>
+                <td class="details">Details</td>
+            </tr>
+        </table>
+        <div ng-repeat="data in vm.tree" ng-include="'tree_item_renderer.html'"></div>
+    </div>
+</body>
+
+</html>
