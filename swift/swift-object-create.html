@@ -1,0 +1,922 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="https://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <style>
+        .trace {
+            min-width: 900px;
+            width: 100%;
+        }
+
+        .trace tr:hover {
+            background-color: #D9EDF7 !important;
+        }
+
+        .trace tr td {
+            width: 14%;
+            white-space: nowrap;
+            padding: 2px;
+            border-right: 1px solid #EEE;
+        }
+
+        .trace tr td.details {
+            width: 10%;
+            padding-right: 20px;
+        }
+
+        .trace.cursor_pointer_on_hover {
+            cursor: pointer;
+        }
+
+        .trace .level {
+            width: 10%;
+            font-weight: bold;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .duration {
+            width: 25px;
+            margin: 0px;
+            padding: 0px;
+            background-color: #C6EFF3;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .duration div {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        dl {
+            margin: 5px 0px;
+        }
+
+        .hljs {
+            white-space: pre;
+            word-wrap: normal;
+        }
+
+        .hljs.wrapped {
+            white-space: pre-wrap;
+        }
+
+        .toggle-button {
+            margin-top: -7px;
+        }
+
+    </style>
+    <script>
+        (function(angular) {
+            'use strict';
+
+            var OSProfilerData = {
+    "info": {
+        "started": 0,
+        "last_trace_started": 91,
+        "finished": 185,
+        "name": "total"
+    },
+    "stats": {
+        "wsgi": {
+            "count": 7,
+            "duration": 254
+        },
+        "db": {
+            "count": 6,
+            "duration": 1
+        }
+    },
+    "children": [
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "main",
+                "started": 0,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "main",
+                    "timestamp": "2017-05-26T06:49:13.044841",
+                    "trace_id": "550a0a49-bc94-429b-a446-168f980c8619",
+                    "project": "keystone",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                },
+                "finished": 1,
+                "project": "keystone",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/identity/",
+                            "scheme": "http",
+                            "method": "GET",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "main",
+                    "timestamp": "2017-05-26T06:49:13.043767",
+                    "trace_id": "550a0a49-bc94-429b-a446-168f980c8619",
+                    "project": "keystone",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                }
+            },
+            "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+            "trace_id": "550a0a49-bc94-429b-a446-168f980c8619",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "main",
+                "started": 3,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "main",
+                    "timestamp": "2017-05-26T06:49:13.071708",
+                    "trace_id": "c62a9995-8241-496a-b904-d68b96a0e0a5",
+                    "project": "keystone",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                },
+                "finished": 27,
+                "project": "keystone",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/identity/v3/auth/tokens",
+                            "scheme": "http",
+                            "method": "POST",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "main",
+                    "timestamp": "2017-05-26T06:49:13.047450",
+                    "trace_id": "c62a9995-8241-496a-b904-d68b96a0e0a5",
+                    "project": "keystone",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                }
+            },
+            "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+            "trace_id": "c62a9995-8241-496a-b904-d68b96a0e0a5",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "main",
+                "started": 31,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "main",
+                    "timestamp": "2017-05-26T06:49:13.099916",
+                    "trace_id": "62eae3f4-6362-4cb8-b13c-5401a26f3df1",
+                    "project": "keystone",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                },
+                "finished": 56,
+                "project": "keystone",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/identity/v3/auth/tokens",
+                            "scheme": "http",
+                            "method": "POST",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "main",
+                    "timestamp": "2017-05-26T06:49:13.075189",
+                    "trace_id": "62eae3f4-6362-4cb8-b13c-5401a26f3df1",
+                    "project": "keystone",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                }
+            },
+            "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+            "trace_id": "62eae3f4-6362-4cb8-b13c-5401a26f3df1",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "proxy-server",
+                "started": 60,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "proxy-server",
+                    "timestamp": "2017-05-26T06:49:13.113370",
+                    "trace_id": "3fd621a9-a6a1-49d8-b04c-7cf90841fd10",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                },
+                "finished": 69,
+                "project": "swift",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/v1/AUTH_d23203214acc4ca4a7986e926a51cf69/local",
+                            "scheme": "http",
+                            "method": "HEAD",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "proxy-server",
+                    "timestamp": "2017-05-26T06:49:13.104525",
+                    "trace_id": "3fd621a9-a6a1-49d8-b04c-7cf90841fd10",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                }
+            },
+            "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+            "trace_id": "3fd621a9-a6a1-49d8-b04c-7cf90841fd10",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "container-server",
+                "started": 62,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "container-server",
+                    "timestamp": "2017-05-26T06:49:13.112147",
+                    "trace_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                },
+                "finished": 68,
+                "project": "swift",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/sdb1/417/AUTH_d23203214acc4ca4a7986e926a51cf69/local",
+                            "scheme": "http",
+                            "method": "HEAD",
+                            "query": null
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "container-server",
+                    "timestamp": "2017-05-26T06:49:13.106103",
+                    "trace_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                }
+            },
+            "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+            "trace_id": "74a18c31-138b-4acc-b040-201421075311",
+            "children": [
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "db",
+                        "service": "container-server",
+                        "started": 65,
+                        "finished": 65,
+                        "project": "swift",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.109678",
+                            "trace_id": "793e2b8a-b42c-45c2-9bca-d02934f96c68",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        },
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": null,
+                                    "statement": "PRAGMA synchronous = NORMAL"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.109190",
+                            "trace_id": "793e2b8a-b42c-45c2-9bca-d02934f96c68",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        }
+                    },
+                    "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "trace_id": "793e2b8a-b42c-45c2-9bca-d02934f96c68",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "db",
+                        "service": "container-server",
+                        "started": 66,
+                        "finished": 67,
+                        "project": "swift",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.110772",
+                            "trace_id": "d66dfc9a-d15b-4030-98cf-803925f83d0c",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        },
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": null,
+                                    "statement": "PRAGMA journal_mode = DELETE"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.110621",
+                            "trace_id": "d66dfc9a-d15b-4030-98cf-803925f83d0c",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        }
+                    },
+                    "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "trace_id": "d66dfc9a-d15b-4030-98cf-803925f83d0c",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "db",
+                        "service": "container-server",
+                        "started": 66,
+                        "finished": 66,
+                        "project": "swift",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.110464",
+                            "trace_id": "9f353f33-af1c-4212-8965-a5d5e42e81e5",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        },
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": null,
+                                    "statement": "PRAGMA temp_store = MEMORY"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.110302",
+                            "trace_id": "9f353f33-af1c-4212-8965-a5d5e42e81e5",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        }
+                    },
+                    "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "trace_id": "9f353f33-af1c-4212-8965-a5d5e42e81e5",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "db",
+                        "service": "container-server",
+                        "started": 66,
+                        "finished": 66,
+                        "project": "swift",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.110115",
+                            "trace_id": "91bb9853-71a8-469e-a7a7-1bdc21f1c990",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        },
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": null,
+                                    "statement": "PRAGMA count_changes = OFF"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.109861",
+                            "trace_id": "91bb9853-71a8-469e-a7a7-1bdc21f1c990",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        }
+                    },
+                    "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "trace_id": "91bb9853-71a8-469e-a7a7-1bdc21f1c990",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": null,
+                                    "statement": "SELECT account, container, created_at, put_timestamp,\n                            delete_timestamp, status_changed_at,\n                            object_count, bytes_used,\n                            reported_put_timestamp, reported_delete_timestamp,\n                            reported_object_count, reported_bytes_used, hash,\n                            id, x_container_sync_point1, x_container_sync_point2, storage_policy_index\n                            FROM container_stat"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.110942",
+                            "trace_id": "9f911992-90ed-49d3-a857-bd83b7138ca2",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        },
+                        "name": "db",
+                        "service": "container-server",
+                        "started": 67,
+                        "finished": 67,
+                        "project": "swift",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.111275",
+                            "trace_id": "9f911992-90ed-49d3-a857-bd83b7138ca2",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        },
+                        "host": "vinhnt-LAB",
+                        "exception": "None"
+                    },
+                    "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "trace_id": "9f911992-90ed-49d3-a857-bd83b7138ca2",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "db",
+                        "service": "container-server",
+                        "started": 67,
+                        "finished": 67,
+                        "project": "swift",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.111656",
+                            "trace_id": "5062004f-1e8a-4b33-b63e-1e6b71b0b9fa",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        },
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": null,
+                                    "statement": "SELECT metadata FROM container_stat"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "container-server",
+                            "timestamp": "2017-05-26T06:49:13.111490",
+                            "trace_id": "5062004f-1e8a-4b33-b63e-1e6b71b0b9fa",
+                            "project": "swift",
+                            "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                            "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                        }
+                    },
+                    "parent_id": "74a18c31-138b-4acc-b040-201421075311",
+                    "trace_id": "5062004f-1e8a-4b33-b63e-1e6b71b0b9fa",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "proxy-server",
+                "started": 88,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "proxy-server",
+                    "timestamp": "2017-05-26T06:49:13.229729",
+                    "trace_id": "b24a3019-74c4-4e9a-8ee4-8ccbfee66564",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                },
+                "finished": 185,
+                "project": "swift",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/v1/AUTH_d23203214acc4ca4a7986e926a51cf69/local/out.html",
+                            "scheme": "http",
+                            "method": "PUT",
+                            "query": null
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "proxy-server",
+                    "timestamp": "2017-05-26T06:49:13.131870",
+                    "trace_id": "b24a3019-74c4-4e9a-8ee4-8ccbfee66564",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                }
+            },
+            "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+            "trace_id": "b24a3019-74c4-4e9a-8ee4-8ccbfee66564",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "object-server",
+                "started": 91,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "object-server",
+                    "timestamp": "2017-05-26T06:49:13.227320",
+                    "trace_id": "beedb573-7a2c-4fd5-b0f2-b1ced7b1cb3d",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                },
+                "finished": 183,
+                "project": "swift",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/sdb1/448/AUTH_d23203214acc4ca4a7986e926a51cf69/local/out.html",
+                            "scheme": "http",
+                            "method": "PUT",
+                            "query": null
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "object-server",
+                    "timestamp": "2017-05-26T06:49:13.134832",
+                    "trace_id": "beedb573-7a2c-4fd5-b0f2-b1ced7b1cb3d",
+                    "project": "swift",
+                    "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+                    "base_id": "5ae845fd-4df6-46a7-9c56-062cedca1944"
+                }
+            },
+            "parent_id": "5ae845fd-4df6-46a7-9c56-062cedca1944",
+            "trace_id": "beedb573-7a2c-4fd5-b0f2-b1ced7b1cb3d",
+            "children": []
+        }
+    ]
+};
+
+            angular
+                .module('app', ['ui.bootstrap', 'hljs'])
+                .config(['$rootScopeProvider', function ($rootScopeProvider) {
+                    $rootScopeProvider.digestTtl(50);
+                }])
+                .config(['hljsServiceProvider', function (hljsServiceProvider) {
+                    hljsServiceProvider.setOptions({
+                        // replace tab with 4 spaces
+                        tabReplace: '    '
+                    });
+                }])
+                .controller('ProfilerController', ProfilerController)
+                .controller('ModalInstanceController', ModalInstanceController);
+
+            // Inject services
+            ProfilerController.$inject = ['$uibModal'];
+            ModalInstanceController.$inject = ['$uibModalInstance', 'info'];
+
+            function ProfilerController($uibModal) {
+                // NOTE(tovin07): Bind this to vm. This is controller as and vm syntax.
+                // This style is mainstream now. It replaces $scope style.
+                // Ref: https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/
+                var vm = this;
+
+                var converInput = function(input, level) {
+                    level = (level) ? level : 0;
+                    input.level = level;
+                    input.is_leaf = !input.children.length;
+
+                    for (var i = 0; i < input.children.length; i++) {
+                        converInput(input.children[i], level + 1);
+                    }
+                    return input;
+                };
+
+                vm.isLastTrace = function(started) {
+                    if (started >=0 && started == vm.tree[0].info.last_trace_started) {
+                        return true;
+                    }
+                    return false;
+                };
+
+                vm.getWidth = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    var duration = (data.info.finished - data.info.started) * 100.0 / fullDuration;
+                    return (duration >= 0.5) ? duration : 0.5;
+                };
+
+                vm.getStarted = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    return data.info.started * 100.0 / fullDuration;
+                };
+
+                vm.isImportance = function(data) {
+                    return ['total', 'wsgi', 'rpc'].indexOf(data.info.name) != -1;
+                };
+
+                vm.display = function(data) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'modal_renderer.html',
+                        controller: 'ModalInstanceController',
+                        controllerAs: 'modal',
+                        size: 'lg',
+                        resolve: {
+                            info: function() {
+                                return angular.copy(data.info);
+                            }
+                        }
+                    });
+                };
+
+                vm.tree = [converInput(OSProfilerData)];
+            }
+
+            function ModalInstanceController($uibModalInstance, info){
+                var modal = this;
+                var metadata = {};
+                angular.forEach(info, function(value, key) {
+                    var parts = key.split('.');
+                    var metaText = 'meta';
+                    if (parts[0] == metaText) {
+                        if (parts.length == 2) {
+                            this[parts[1]] = value;
+                        } else {
+                            var groupName = parts[1];
+                            if (!(groupName in this)) {
+                                this[groupName] = {};
+                            }
+                            // Plus 2 for 2 dots such as: meta.raw_payload.heat.wsgi-start
+                            var index = metaText.length + parts[1].length + 2;
+                            this[groupName][key.slice(index)] = value;
+                        }
+                    };
+                }, metadata);
+
+                info.duration = info.finished - info.started;
+                // Escape single-quotes to prevent angular parse lexerr
+                info.metadata = JSON.stringify(metadata, null, 4).replace(/'/g, "\\'");
+
+                // Bind to view model
+                modal.info = info;
+
+                modal.columns = [
+                    ['name', 'project', 'service', 'host'],
+                    ['started', 'finished', 'duration', 'exception']
+                ];
+
+                modal.toggleWrap = function() {
+                    var element = angular.element(document.querySelector('code.hljs'));
+
+                    var wrappedClass = 'wrapped';
+                    var isWrapped = element.hasClass(wrappedClass);
+                    if (isWrapped) {
+                        element.removeClass(wrappedClass);
+                    } else {
+                        element.addClass(wrappedClass);
+                    }
+                };
+
+                modal.close = function() {
+                    $uibModalInstance.dismiss('close');
+                };
+            }
+        })(window.angular);
+    </script>
+</head>
+
+<body>
+    <!--Tree item template-->
+    <script type="text/ng-template" id="tree_item_renderer.html">
+        <div ng-init="hide_children=false">
+            <table class="trace cursor_pointer_on_hover">
+                <tr ng-class="{'bg-success': vm.isLastTrace(data.info.started)}">
+                    <td class="level" style="padding-left: {{::data.level * 5}}px;">
+                        <button type="button" class="btn btn-default btn-xs" ng-disabled="data.is_leaf" ng-click="hide_children=!hide_children">
+                            <span class="glyphicon glyphicon-{{(data.is_leaf) ? 'cloud' : ((hide_children) ? 'plus': 'minus')}}"></span>
+                            {{::data.level || 0}}
+                        </button>
+                    </td>
+                    <td ng-click="vm.display(data)" class="text-center">
+                        <div class="duration" style="width: {{vm.getWidth(data)}}%; margin-left: {{vm.getStarted(data)}}%;">
+                            <div>{{data.info.finished - data.info.started}} ms</div>
+                        </div>
+                    </td>
+                    <td ng-click="vm.display(data)" class="{{vm.isImportance(data) ? 'bold' : ''}} text-right">{{::data.info.name}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.project || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.service || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.host || "n/a"}}</td>
+                    <td class="details">
+                        <a href="#" ng-click="vm.display(data)">Details</a>
+                    </td>
+                </tr>
+            </table>
+            <div ng-hide="hide_children">
+                <div ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'"></div>
+            </div>
+        </div>
+    </script>
+    <!--Modal template-->
+    <script type="text/ng-template" id="modal_renderer.html">
+        <div class="modal-header">
+            <h3 class="text-center">
+                <strong>Trace Point Details</strong>
+                <span class="btn btn-default pull-right toggle-button" ng-click="modal.toggleWrap()">Toggle wrap-text</span>
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="cols in modal.columns">
+                    <dl class="dl-horizontal" ng-repeat="column in cols">
+                        <dt class="text-capitalize">{{::column}}</dt>
+                        <dd>{{::modal.info[column]}}</dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <!--For metadata only-->
+                    <dl class="dl-horizontal">
+                        <dt class="text-capitalize">metadata</dt>
+                        <dd hljs hljs-language="json" hljs-source="'{{::modal.info.metadata}}'"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-default" ng-click="modal.close()">Close</span>
+        </div>
+    </script>
+    <!--Body-->
+    <div ng-controller="ProfilerController as vm">
+        <table class="trace">
+            <tr class="bold text-left" style="border-bottom: solid 1px gray;">
+                <td class="level">Levels</td>
+                <td>Duration</td>
+                <td class="text-right">Type</td>
+                <td>Project</td>
+                <td>Service</td>
+                <td>Host</td>
+                <td class="details">Details</td>
+            </tr>
+        </table>
+        <div ng-repeat="data in vm.tree" ng-include="'tree_item_renderer.html'"></div>
+    </div>
+</body>
+
+</html>
