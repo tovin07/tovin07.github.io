@@ -1,0 +1,1123 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="https://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <style>
+        .trace {
+            min-width: 900px;
+            width: 100%;
+        }
+
+        .trace tr:hover {
+            background-color: #D9EDF7 !important;
+        }
+
+        .trace tr td {
+            width: 14%;
+            white-space: nowrap;
+            padding: 2px;
+            border-right: 1px solid #EEE;
+        }
+
+        .trace tr td.details {
+            width: 10%;
+            padding-right: 20px;
+        }
+
+        .trace.cursor_pointer_on_hover {
+            cursor: pointer;
+        }
+
+        .trace .level {
+            width: 10%;
+            font-weight: bold;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .duration {
+            width: 25px;
+            margin: 0px;
+            padding: 0px;
+            background-color: #C6EFF3;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        .duration div {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+
+        dl {
+            margin: 5px 0px;
+        }
+
+        .hljs {
+            white-space: pre;
+            word-wrap: normal;
+        }
+
+        .hljs.wrapped {
+            white-space: pre-wrap;
+        }
+
+        .toggle-button {
+            margin-top: -7px;
+        }
+
+    </style>
+    <script>
+        (function(angular) {
+            'use strict';
+
+            var OSProfilerData = {
+    "info": {
+        "started": 0,
+        "last_trace_started": 169,
+        "finished": 169,
+        "name": "total"
+    },
+    "stats": {
+        "wsgi": {
+            "count": 7,
+            "duration": 187
+        },
+        "api": {
+            "count": 3,
+            "duration": 62
+        },
+        "db": {
+            "count": 7,
+            "duration": 4
+        }
+    },
+    "children": [
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "main",
+                "started": 0,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "main",
+                    "timestamp": "2017-07-13T08:11:42.039960",
+                    "trace_id": "e9598224-0d29-4315-b238-21d4b2f6f0e1",
+                    "project": "keystone",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                },
+                "finished": 0,
+                "project": "keystone",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/identity/",
+                            "scheme": "http",
+                            "method": "GET",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "main",
+                    "timestamp": "2017-07-13T08:11:42.039047",
+                    "trace_id": "e9598224-0d29-4315-b238-21d4b2f6f0e1",
+                    "project": "keystone",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                }
+            },
+            "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+            "trace_id": "e9598224-0d29-4315-b238-21d4b2f6f0e1",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "main",
+                "started": 3,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "main",
+                    "timestamp": "2017-07-13T08:11:42.063334",
+                    "trace_id": "4cf24107-9b8a-4434-b9ef-7db9948bb4fb",
+                    "project": "keystone",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                },
+                "finished": 24,
+                "project": "keystone",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/identity/v3/auth/tokens",
+                            "scheme": "http",
+                            "method": "POST",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "main",
+                    "timestamp": "2017-07-13T08:11:42.042532",
+                    "trace_id": "4cf24107-9b8a-4434-b9ef-7db9948bb4fb",
+                    "project": "keystone",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                }
+            },
+            "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+            "trace_id": "4cf24107-9b8a-4434-b9ef-7db9948bb4fb",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "main",
+                "started": 28,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "main",
+                    "timestamp": "2017-07-13T08:11:42.090421",
+                    "trace_id": "60e464b8-9d07-4dd2-abe6-c2ad0b6e451d",
+                    "project": "keystone",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                },
+                "finished": 51,
+                "project": "keystone",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/identity/v3/auth/tokens",
+                            "scheme": "http",
+                            "method": "POST",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "main",
+                    "timestamp": "2017-07-13T08:11:42.067275",
+                    "trace_id": "60e464b8-9d07-4dd2-abe6-c2ad0b6e451d",
+                    "project": "keystone",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                }
+            },
+            "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+            "trace_id": "60e464b8-9d07-4dd2-abe6-c2ad0b6e451d",
+            "children": []
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "aodh-api",
+                "started": 54,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "aodh-api",
+                    "timestamp": "2017-07-13T08:11:42.123895",
+                    "trace_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                    "project": "aodh",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                },
+                "finished": 84,
+                "project": "aodh",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/v2/query/alarms",
+                            "scheme": "http",
+                            "method": "POST",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "aodh-api",
+                    "timestamp": "2017-07-13T08:11:42.093838",
+                    "trace_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                    "project": "aodh",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                }
+            },
+            "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+            "trace_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+            "children": [
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "wsgi",
+                        "service": "main",
+                        "started": 57,
+                        "meta.raw_payload.wsgi-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "wsgi-stop",
+                            "service": "main",
+                            "timestamp": "2017-07-13T08:11:42.111938",
+                            "trace_id": "882ecaa3-78e2-4b63-854a-9bcc8d985393",
+                            "project": "keystone",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        },
+                        "finished": 72,
+                        "project": "keystone",
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.wsgi-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "request": {
+                                    "path": "/identity/v3/auth/tokens",
+                                    "scheme": "http",
+                                    "method": "GET",
+                                    "query": ""
+                                },
+                                "service": null
+                            },
+                            "name": "wsgi-start",
+                            "service": "main",
+                            "timestamp": "2017-07-13T08:11:42.096050",
+                            "trace_id": "882ecaa3-78e2-4b63-854a-9bcc8d985393",
+                            "project": "keystone",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        }
+                    },
+                    "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                    "trace_id": "882ecaa3-78e2-4b63-854a-9bcc8d985393",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "api",
+                        "service": "aodh-api",
+                        "started": 76,
+                        "finished": 79,
+                        "project": "aodh",
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.api-start": {
+                            "info": {
+                                "function": {
+                                    "args": "(<aodh.api.controllers.v2.query.ValidatedComplexQuery object at 0x7efccd65f2d0>,)",
+                                    "name": "aodh.api.controllers.v2.query.ValidatedComplexQuery.validate",
+                                    "kwargs": "{'visibility_field': 'project_id'}"
+                                },
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-start",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.115164",
+                            "trace_id": "42671fff-c07b-4acb-9f69-47cdfc6222a9",
+                            "project": "aodh",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        },
+                        "meta.raw_payload.api-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-stop",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.118548",
+                            "trace_id": "42671fff-c07b-4acb-9f69-47cdfc6222a9",
+                            "project": "aodh",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        }
+                    },
+                    "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                    "trace_id": "42671fff-c07b-4acb-9f69-47cdfc6222a9",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "db",
+                        "service": "aodh-api",
+                        "started": 80,
+                        "finished": 81,
+                        "project": "aodh",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.120288",
+                            "trace_id": "ee881a04-3596-47de-834e-cea8a291e2a7",
+                            "project": "aodh",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        },
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": {},
+                                    "statement": "SELECT 1"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.119675",
+                            "trace_id": "ee881a04-3596-47de-834e-cea8a291e2a7",
+                            "project": "aodh",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        }
+                    },
+                    "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                    "trace_id": "ee881a04-3596-47de-834e-cea8a291e2a7",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "meta.raw_payload.db-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "db": {
+                                    "params": {
+                                        "name_1": "test1"
+                                    },
+                                    "statement": "SELECT alarm.alarm_id AS alarm_alarm_id, alarm.enabled AS alarm_enabled, alarm.name AS alarm_name, alarm.type AS alarm_type, alarm.severity AS alarm_severity, alarm.description AS alarm_description, alarm.timestamp AS alarm_timestamp, alarm.user_id AS alarm_user_id, alarm.project_id AS alarm_project_id, alarm.state AS alarm_state, alarm.state_reason AS alarm_state_reason, alarm.state_timestamp AS alarm_state_timestamp, alarm.ok_actions AS alarm_ok_actions, alarm.alarm_actions AS alarm_alarm_actions, alarm.insufficient_data_actions AS alarm_insufficient_data_actions, alarm.repeat_actions AS alarm_repeat_actions, alarm.rule AS alarm_rule, alarm.time_constraints AS alarm_time_constraints \nFROM alarm \nWHERE alarm.name = %(name_1)s ORDER BY alarm.timestamp DESC"
+                                },
+                                "service": null
+                            },
+                            "name": "db-start",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.121348",
+                            "trace_id": "43e7bf9a-b293-4c9d-8a39-e6dc9b8dd53e",
+                            "project": "aodh",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        },
+                        "name": "db",
+                        "service": "aodh-api",
+                        "started": 82,
+                        "finished": 83,
+                        "project": "aodh",
+                        "meta.raw_payload.db-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "db-stop",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.122343",
+                            "trace_id": "43e7bf9a-b293-4c9d-8a39-e6dc9b8dd53e",
+                            "project": "aodh",
+                            "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        },
+                        "host": "vinhnt-LAB",
+                        "exception": "None"
+                    },
+                    "parent_id": "00a82629-8059-4d04-b7c1-36e249bf4798",
+                    "trace_id": "43e7bf9a-b293-4c9d-8a39-e6dc9b8dd53e",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "info": {
+                "exception": "None",
+                "name": "wsgi",
+                "service": "aodh-api",
+                "started": 88,
+                "meta.raw_payload.wsgi-stop": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "service": null
+                    },
+                    "name": "wsgi-stop",
+                    "service": "aodh-api",
+                    "timestamp": "2017-07-13T08:11:42.208944",
+                    "trace_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                    "project": "aodh",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                },
+                "finished": 169,
+                "project": "aodh",
+                "host": "vinhnt-LAB",
+                "meta.raw_payload.wsgi-start": {
+                    "info": {
+                        "project": null,
+                        "host": "vinhnt-LAB",
+                        "request": {
+                            "path": "/v2/alarms/2dc8f412-817b-4a89-ab34-56aa4139fe8c",
+                            "scheme": "http",
+                            "method": "DELETE",
+                            "query": ""
+                        },
+                        "service": null
+                    },
+                    "name": "wsgi-start",
+                    "service": "aodh-api",
+                    "timestamp": "2017-07-13T08:11:42.127561",
+                    "trace_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                    "project": "aodh",
+                    "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                }
+            },
+            "parent_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555",
+            "trace_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+            "children": [
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "wsgi",
+                        "service": "main",
+                        "started": 90,
+                        "meta.raw_payload.wsgi-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "wsgi-stop",
+                            "service": "main",
+                            "timestamp": "2017-07-13T08:11:42.146816",
+                            "trace_id": "2dbde61e-fbda-4bf9-9824-22df42942cb9",
+                            "project": "keystone",
+                            "parent_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        },
+                        "finished": 107,
+                        "project": "keystone",
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.wsgi-start": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "request": {
+                                    "path": "/identity/v3/auth/tokens",
+                                    "scheme": "http",
+                                    "method": "GET",
+                                    "query": ""
+                                },
+                                "service": null
+                            },
+                            "name": "wsgi-start",
+                            "service": "main",
+                            "timestamp": "2017-07-13T08:11:42.129745",
+                            "trace_id": "2dbde61e-fbda-4bf9-9824-22df42942cb9",
+                            "project": "keystone",
+                            "parent_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        }
+                    },
+                    "parent_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                    "trace_id": "2dbde61e-fbda-4bf9-9824-22df42942cb9",
+                    "children": []
+                },
+                {
+                    "info": {
+                        "exception": "None",
+                        "name": "api",
+                        "service": "aodh-api",
+                        "started": 110,
+                        "finished": 169,
+                        "project": "aodh",
+                        "host": "vinhnt-LAB",
+                        "meta.raw_payload.api-start": {
+                            "info": {
+                                "function": {
+                                    "args": "(<aodh.api.controllers.v2.alarms.AlarmController object at 0x7efccd655e10>,)",
+                                    "name": "aodh.api.controllers.v2.alarms.AlarmController.delete",
+                                    "kwargs": "{}"
+                                },
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-start",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.149577",
+                            "trace_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "project": "aodh",
+                            "parent_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        },
+                        "meta.raw_payload.api-stop": {
+                            "info": {
+                                "project": null,
+                                "host": "vinhnt-LAB",
+                                "service": null
+                            },
+                            "name": "api-stop",
+                            "service": "aodh-api",
+                            "timestamp": "2017-07-13T08:11:42.208768",
+                            "trace_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "project": "aodh",
+                            "parent_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                            "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                        }
+                    },
+                    "parent_id": "0f6c0937-1136-449e-82e2-1f5967472488",
+                    "trace_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                    "children": [
+                        {
+                            "info": {
+                                "exception": "None",
+                                "name": "db",
+                                "service": "aodh-api",
+                                "started": 112,
+                                "finished": 112,
+                                "project": "aodh",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.151706",
+                                    "trace_id": "861f0648-37ae-4f9c-9542-935c07dd3e9d",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "host": "vinhnt-LAB",
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.151259",
+                                    "trace_id": "861f0648-37ae-4f9c-9542-935c07dd3e9d",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                }
+                            },
+                            "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "trace_id": "861f0648-37ae-4f9c-9542-935c07dd3e9d",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "alarm_id_1": "2dc8f412-817b-4a89-ab34-56aa4139fe8c"
+                                            },
+                                            "statement": "SELECT alarm.alarm_id AS alarm_alarm_id, alarm.enabled AS alarm_enabled, alarm.name AS alarm_name, alarm.type AS alarm_type, alarm.severity AS alarm_severity, alarm.description AS alarm_description, alarm.timestamp AS alarm_timestamp, alarm.user_id AS alarm_user_id, alarm.project_id AS alarm_project_id, alarm.state AS alarm_state, alarm.state_reason AS alarm_state_reason, alarm.state_timestamp AS alarm_state_timestamp, alarm.ok_actions AS alarm_ok_actions, alarm.alarm_actions AS alarm_alarm_actions, alarm.insufficient_data_actions AS alarm_insufficient_data_actions, alarm.repeat_actions AS alarm_repeat_actions, alarm.rule AS alarm_rule, alarm.time_constraints AS alarm_time_constraints \nFROM alarm \nWHERE alarm.alarm_id = %(alarm_id_1)s ORDER BY alarm.timestamp DESC"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.152772",
+                                    "trace_id": "23825922-154e-4a70-b502-629a382a801e",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "name": "db",
+                                "service": "aodh-api",
+                                "started": 113,
+                                "finished": 114,
+                                "project": "aodh",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.153845",
+                                    "trace_id": "23825922-154e-4a70-b502-629a382a801e",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "trace_id": "23825922-154e-4a70-b502-629a382a801e",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "exception": "None",
+                                "name": "db",
+                                "service": "aodh-api",
+                                "started": 116,
+                                "finished": 116,
+                                "project": "aodh",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.155737",
+                                    "trace_id": "c52f7519-990f-4736-9aef-2663fcf1e32d",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "host": "vinhnt-LAB",
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {},
+                                            "statement": "SELECT 1"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.155398",
+                                    "trace_id": "c52f7519-990f-4736-9aef-2663fcf1e32d",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                }
+                            },
+                            "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "trace_id": "c52f7519-990f-4736-9aef-2663fcf1e32d",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "exception": "None",
+                                "name": "db",
+                                "service": "aodh-api",
+                                "started": 117,
+                                "finished": 117,
+                                "project": "aodh",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.156460",
+                                    "trace_id": "18a640a9-d94f-41a8-9a65-e32f484ed159",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "host": "vinhnt-LAB",
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "alarm_id_1": "2dc8f412-817b-4a89-ab34-56aa4139fe8c"
+                                            },
+                                            "statement": "DELETE FROM alarm WHERE alarm.alarm_id = %(alarm_id_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.156093",
+                                    "trace_id": "18a640a9-d94f-41a8-9a65-e32f484ed159",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                }
+                            },
+                            "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "trace_id": "18a640a9-d94f-41a8-9a65-e32f484ed159",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "meta.raw_payload.db-start": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "db": {
+                                            "params": {
+                                                "alarm_id_1": "2dc8f412-817b-4a89-ab34-56aa4139fe8c"
+                                            },
+                                            "statement": "DELETE FROM alarm_history WHERE alarm_history.alarm_id = %(alarm_id_1)s"
+                                        },
+                                        "service": null
+                                    },
+                                    "name": "db-start",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.157038",
+                                    "trace_id": "43c7de5a-bb29-446f-8bd6-c79f2a8b145c",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "name": "db",
+                                "service": "aodh-api",
+                                "started": 117,
+                                "finished": 118,
+                                "project": "aodh",
+                                "meta.raw_payload.db-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "db-stop",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.157377",
+                                    "trace_id": "43c7de5a-bb29-446f-8bd6-c79f2a8b145c",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "host": "vinhnt-LAB",
+                                "exception": "None"
+                            },
+                            "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "trace_id": "43c7de5a-bb29-446f-8bd6-c79f2a8b145c",
+                            "children": []
+                        },
+                        {
+                            "info": {
+                                "exception": "None",
+                                "name": "api",
+                                "service": "aodh-api",
+                                "started": 169,
+                                "finished": 169,
+                                "project": "aodh",
+                                "host": "vinhnt-LAB",
+                                "meta.raw_payload.api-start": {
+                                    "info": {
+                                        "function": {
+                                            "args": "(<aodh.api.controllers.v2.alarms.Alarm object at 0x7efccd65f9d0>,)",
+                                            "name": "aodh.api.controllers.v2.alarms.Alarm.delete_actions",
+                                            "kwargs": "{}"
+                                        },
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "api-start",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.208504",
+                                    "trace_id": "01eea415-b423-46df-ab77-b90535478036",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                },
+                                "meta.raw_payload.api-stop": {
+                                    "info": {
+                                        "project": null,
+                                        "host": "vinhnt-LAB",
+                                        "service": null
+                                    },
+                                    "name": "api-stop",
+                                    "service": "aodh-api",
+                                    "timestamp": "2017-07-13T08:11:42.208643",
+                                    "trace_id": "01eea415-b423-46df-ab77-b90535478036",
+                                    "project": "aodh",
+                                    "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                                    "base_id": "9f3777db-6986-4ab1-8588-3c55bdb4f555"
+                                }
+                            },
+                            "parent_id": "c2fa162f-b508-4ba2-b775-62e75ad66ddc",
+                            "trace_id": "01eea415-b423-46df-ab77-b90535478036",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+
+            angular
+                .module('app', ['ui.bootstrap', 'hljs'])
+                .config(['$rootScopeProvider', function ($rootScopeProvider) {
+                    $rootScopeProvider.digestTtl(50);
+                }])
+                .config(['hljsServiceProvider', function (hljsServiceProvider) {
+                    hljsServiceProvider.setOptions({
+                        // replace tab with 4 spaces
+                        tabReplace: '    '
+                    });
+                }])
+                .controller('ProfilerController', ProfilerController)
+                .controller('ModalInstanceController', ModalInstanceController);
+
+            // Inject services
+            ProfilerController.$inject = ['$uibModal'];
+            ModalInstanceController.$inject = ['$uibModalInstance', 'info'];
+
+            function ProfilerController($uibModal) {
+                // NOTE(tovin07): Bind this to vm. This is controller as and vm syntax.
+                // This style is mainstream now. It replaces $scope style.
+                // Ref: https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/
+                var vm = this;
+
+                var converInput = function(input, level) {
+                    level = (level) ? level : 0;
+                    input.level = level;
+                    input.is_leaf = !input.children.length;
+
+                    for (var i = 0; i < input.children.length; i++) {
+                        converInput(input.children[i], level + 1);
+                    }
+                    return input;
+                };
+
+                vm.isLastTrace = function(started) {
+                    if (started >=0 && started == vm.tree[0].info.last_trace_started) {
+                        return true;
+                    }
+                    return false;
+                };
+
+                vm.getWidth = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    var duration = (data.info.finished - data.info.started) * 100.0 / fullDuration;
+                    return (duration >= 0.5) ? duration : 0.5;
+                };
+
+                vm.getStarted = function(data) {
+                    var fullDuration = vm.tree[0].info.finished;
+                    return data.info.started * 100.0 / fullDuration;
+                };
+
+                vm.isImportance = function(data) {
+                    return ['total', 'wsgi', 'rpc'].indexOf(data.info.name) != -1;
+                };
+
+                vm.display = function(data) {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'modal_renderer.html',
+                        controller: 'ModalInstanceController',
+                        controllerAs: 'modal',
+                        size: 'lg',
+                        resolve: {
+                            info: function() {
+                                return angular.copy(data.info);
+                            }
+                        }
+                    });
+                };
+
+                vm.tree = [converInput(OSProfilerData)];
+            }
+
+            function ModalInstanceController($uibModalInstance, info){
+                var modal = this;
+                var metadata = {};
+                angular.forEach(info, function(value, key) {
+                    var parts = key.split('.');
+                    var metaText = 'meta';
+                    if (parts[0] == metaText) {
+                        if (parts.length == 2) {
+                            this[parts[1]] = value;
+                        } else {
+                            var groupName = parts[1];
+                            if (!(groupName in this)) {
+                                this[groupName] = {};
+                            }
+                            // Plus 2 for 2 dots such as: meta.raw_payload.heat.wsgi-start
+                            var index = metaText.length + parts[1].length + 2;
+                            this[groupName][key.slice(index)] = value;
+                        }
+                    };
+                }, metadata);
+
+                info.duration = info.finished - info.started;
+                // Escape single-quotes to prevent angular parse lexerr
+                info.metadata = JSON.stringify(metadata, null, 4).replace(/'/g, "\\'");
+
+                // Bind to view model
+                modal.info = info;
+
+                modal.columns = [
+                    ['name', 'project', 'service', 'host'],
+                    ['started', 'finished', 'duration', 'exception']
+                ];
+
+                modal.toggleWrap = function() {
+                    var element = angular.element(document.querySelector('code.hljs'));
+
+                    var wrappedClass = 'wrapped';
+                    var isWrapped = element.hasClass(wrappedClass);
+                    if (isWrapped) {
+                        element.removeClass(wrappedClass);
+                    } else {
+                        element.addClass(wrappedClass);
+                    }
+                };
+
+                modal.close = function() {
+                    $uibModalInstance.dismiss('close');
+                };
+            }
+        })(window.angular);
+    </script>
+</head>
+
+<body>
+    <!--Tree item template-->
+    <script type="text/ng-template" id="tree_item_renderer.html">
+        <div ng-init="hide_children=false">
+            <table class="trace cursor_pointer_on_hover">
+                <tr ng-class="{'bg-success': vm.isLastTrace(data.info.started)}">
+                    <td class="level" style="padding-left: {{::data.level * 5}}px;">
+                        <button type="button" class="btn btn-default btn-xs" ng-disabled="data.is_leaf" ng-click="hide_children=!hide_children">
+                            <span class="glyphicon glyphicon-{{(data.is_leaf) ? 'cloud' : ((hide_children) ? 'plus': 'minus')}}"></span>
+                            {{::data.level || 0}}
+                        </button>
+                    </td>
+                    <td ng-click="vm.display(data)" class="text-center">
+                        <div class="duration" style="width: {{vm.getWidth(data)}}%; margin-left: {{vm.getStarted(data)}}%;">
+                            <div>{{data.info.finished - data.info.started}} ms</div>
+                        </div>
+                    </td>
+                    <td ng-click="vm.display(data)" class="{{vm.isImportance(data) ? 'bold' : ''}} text-right">{{::data.info.name}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.project || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.service || "n/a"}}</td>
+                    <td ng-click="vm.display(data)">{{::data.info.host || "n/a"}}</td>
+                    <td class="details">
+                        <a href="#" ng-click="vm.display(data)">Details</a>
+                    </td>
+                </tr>
+            </table>
+            <div ng-hide="hide_children">
+                <div ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'"></div>
+            </div>
+        </div>
+    </script>
+    <!--Modal template-->
+    <script type="text/ng-template" id="modal_renderer.html">
+        <div class="modal-header">
+            <h3 class="text-center">
+                <strong>Trace Point Details</strong>
+                <span class="btn btn-default pull-right toggle-button" ng-click="modal.toggleWrap()">Toggle wrap-text</span>
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="cols in modal.columns">
+                    <dl class="dl-horizontal" ng-repeat="column in cols">
+                        <dt class="text-capitalize">{{::column}}</dt>
+                        <dd>{{::modal.info[column]}}</dd>
+                    </dl>
+                </div>
+                <div class="col-md-12">
+                    <!--For metadata only-->
+                    <dl class="dl-horizontal">
+                        <dt class="text-capitalize">metadata</dt>
+                        <dd hljs hljs-language="json" hljs-source="'{{::modal.info.metadata}}'"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <span class="btn btn-default" ng-click="modal.close()">Close</span>
+        </div>
+    </script>
+    <!--Body-->
+    <div ng-controller="ProfilerController as vm">
+        <table class="trace">
+            <tr class="bold text-left" style="border-bottom: solid 1px gray;">
+                <td class="level">Levels</td>
+                <td>Duration</td>
+                <td class="text-right">Type</td>
+                <td>Project</td>
+                <td>Service</td>
+                <td>Host</td>
+                <td class="details">Details</td>
+            </tr>
+        </table>
+        <div ng-repeat="data in vm.tree" ng-include="'tree_item_renderer.html'"></div>
+    </div>
+</body>
+
+</html>
